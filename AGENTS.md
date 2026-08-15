@@ -1,22 +1,47 @@
-## Development
+## Contexto del proyecto
 
-When starting the dev server, use background mode:
+- El proyecto es una página web para el negocio de masajes "Manos Sagradas Masajes".
+- El proyecto usa Sass (ya instalado) y Swiper.
+- Dirección: Plazoleta Belén N.º 1082-A, Tercer piso, Of. 301, Cusco, Peru, 08001.
+- Teléfono y WhatsApp: +51 907 529 233.
+- Página de Facebook: https://www.facebook.com/ManosSagradasMasajes/
 
-```
-astro dev --background
-```
+## Idioma
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+- El idioma del proyecto es español.
+- Si se recibe información en inglés, traducirla al español nativo.
 
-## Documentation
+## Paleta de colores
 
-Full documentation: https://docs.astro.build
+Definida en `src/global.css` con `@theme` de Tailwind v4, disponible como clases Tailwind (`bg-primary`, `text-gold`, `border-sage`, etc.):
 
-Consult these guides before working on related tasks:
+- Brand: `primary` #4A2F24 (marrón chocolate), `primary-light` #70513D (café cálido), `primary-dark` #352019 (marrón profundo)
+- Accent: `gold` #B58A4A (dorado), `gold-light` #D6B982 (champagne), `gold-dark` #8F6935 (dorado oscuro)
+- Backgrounds: `background` #F7F1E7 (crema principal), `background-alt` #E8DCCB (beige), `surface` #FFFDF9 (blanco cálido)
+- Text: `text` #30231D (marrón oscuro), `text-muted` #705F53 (texto secundario)
+- Nature: `sage` #7A8065 (verde salvia), `sage-light` #A5AA91
+- Status: `success` #687A5A
 
-- [Adding pages, dynamic routes, or middleware](https://docs.astro.build/en/guides/routing/)
-- [Working with Astro components](https://docs.astro.build/en/basics/astro-components/)
-- [Using React, Vue, Svelte, or other framework components](https://docs.astro.build/en/guides/framework-components/)
-- [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
-- [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
-- [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+## Convenciones de código
+
+**Scripts**
+
+- No ejecutar los script, eso se realiza manualmente.
+
+**Comentarios**
+
+- Usar `#` como separador en comentarios generados, nunca `-`, `_` u otros caracteres similares.
+
+**Estilos**
+
+- Usar siempre clases de Tailwind.
+- Usar `scss` solo cuando Tailwind no sea suficiente: valores específicos (`px`, `rem`, etc.), transiciones complejas o animaciones.
+
+**Breakpoints**
+
+- Para todo diseño responsive nuevo usar los breakpoints de Tailwind (definidos como variables Sass en `src/main.scss`: `$bp-sm`, `$bp-md`, `$bp-lg`, `$bp-xl`, `$bp-2xl`):
+  - `sm`: 640px
+  - `md`: 768px
+  - `lg`: 1024px
+  - `xl`: 1280px
+  - `2xl`: 1536px

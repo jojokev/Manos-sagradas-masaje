@@ -1,0 +1,10 @@
+				@font-face {
+					font-family: 'handelson';
+					src: url('/wp-content/uploads/useanyfont/6053handelson.woff2') format('woff2'),
+						url('/wp-content/uploads/useanyfont/6053handelson.woff') format('woff');
+					  font-display: auto;
+				}
+
+				.handelson{font-family: 'handelson' !important;}
+
+		
