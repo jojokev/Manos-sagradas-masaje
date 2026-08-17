@@ -13,12 +13,22 @@ const {
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" sizes="32x32" href="/Icon_manos_sagradasx32.ico" />
-    <link rel="icon" type="image/x-icon" sizes="64x64" href="/Icon_manos_sagradasx64.ico" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="32x32"
+      href="/Icon_manos_sagradasx32.ico"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      sizes="64x64"
+      href="/Icon_manos_sagradasx64.ico"
+    />
     <link rel="shortcut icon" href="/Icon_manos_sagradasx32.ico" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
@@ -31,14 +41,6 @@ const {
     <title>{title}</title>
   </head>
   <body class="bg-background font-sans text-text antialiased">
-    <!--
-      THESIS: Manos Sagradas como santuario personal # nichos con arco calido en vez de vitrina de precios, cercania en vez del relato "ancestral andino" que ya es del competidor dominante.
-      OWN-WORLD: marron chocolate / dorado / crema ya establecidos en global.css, Playfair Display + Inter, Header y Hero existentes.
-      STORY: el visitante entiende que Manos Sagradas ofrece atencion personalizada en un espacio tranquilo, recorre los nichos de servicios reales y la galeria, y reserva por WhatsApp sin friccion.
-      FIRST VIEWPORT: resuelto por el Hero existente # slider a pantalla completa con CTA de reserva.
-      FORM: nichos con arco tipo santuario # estructura visual heredada del reparto original (seed key 80d72646), narrativa revisada tras contexto real del dueno y del competidor.
-      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md.
-    -->
     <slot />
   </body>
 </html>

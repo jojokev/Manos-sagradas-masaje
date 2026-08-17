@@ -24,11 +24,9 @@ typography:
     fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
     fontWeight: 400
 rounded:
-  sm: "1rem"
-  md: "1.5rem"
-  lg: "2rem"
-  awning: "3rem"
-  full: "9999px"
+  sm: "0.25rem"
+  md: "0.375rem"
+  lg: "0.5rem"
 spacing:
   section-y: "5rem"
   section-y-lg: "7rem"
@@ -36,7 +34,7 @@ components:
   button-primary:
     backgroundColor: "{colors.gold}"
     textColor: "{colors.surface}"
-    rounded: "{rounded.full}"
+    rounded: "{rounded.lg}"
     padding: "0.75rem 2rem"
   button-primary-hover:
     backgroundColor: "{colors.gold-dark}"
@@ -50,7 +48,7 @@ components:
 
 El sitio traduce la voz real del dueño ("un lugar para detener el ruido,
 soltar el estrés y regalarte un momento de cuidado personal") a una
-landing de una sola página: cada terapia vive en un nicho con arco cálido
+landing de una sola página: cada terapia vive en un nicho cálido y sobrio
 — eco del propio nombre "Manos Sagradas" — que se abre cuando te
 detienes, nunca una vitrina de precios ni una narrativa de mercado. La
 paleta marrón chocolate y dorado, junto con Playfair Display para los
@@ -68,7 +66,7 @@ Spa, el competidor grande y establecido de la ciudad.
 **Key Characteristics:**
 - Fotografía real de tratamientos como material principal, nunca stock genérico añadido sin evidencia.
 - Un solo acento dorado que marca la acción principal (reservar por WhatsApp), nunca disperso en el fondo.
-- Formas con un arco superior amplio que evocan un nicho o santuario acogedor, no un mostrador comercial.
+- Esquinas sobrias (`rounded-lg`, `.5rem` máximo) que evocan un nicho o santuario acogedor sin caer en formas ostentosas, no un mostrador comercial.
 - Reserva por WhatsApp siempre a un enlace de distancia, en cada sección relevante.
 
 ## Colors
@@ -76,7 +74,7 @@ Spa, el competidor grande y establecido de la ciudad.
 Paleta cálida y terrosa de un solo acento: marrones como base y superficie, un dorado como único color de acción.
 
 ### Primary
-- **Marrón profundo** (`#352019`, `primary-dark`): fondos de sección de cierre/contacto y overlays sobre fotografía.
+- **Marrón profundo** (`#352019`, `primary-dark`): tarjetas de servicio y overlays sobre fotografía.
 - **Marrón chocolate** (`#4A2F24`, `primary`): paneles sólidos (tarjeta "¿Buscas algo más?").
 - **Café cálido** (`#70513D`, `primary-light`): reservado, aún sin uso extendido en componentes.
 
@@ -121,16 +119,16 @@ El sistema es mayormente plano: la profundidad se transmite con overlays de grad
 
 ## Shapes
 
-Dos lenguajes de esquina conviven a propósito: un arco amplio superior (`rounded-t-[3rem]`) en las tarjetas de servicio, evocando un nicho o santuario acogedor (eco del nombre "Manos Sagradas"), y esquinas suaves convencionales (`rounded-2xl`, `rounded-[2rem]`) en el resto de tarjetas e imágenes. Los CTA principales son siempre píldora (`rounded-full`). Un anillo dorado con separación (`border` desplazado con `-inset-3`) enmarca la imagen de la sección Nosotros.
+Radio de esquina único y contenido en todo el sitio: `rounded-lg` (`.5rem`) como máximo, sin excepciones de marca (nada de arcos grandes ni botones píldora). Aplica por igual a tarjetas de servicio, botones, imágenes y contenedores. Un anillo dorado con separación (`border` desplazado con `-inset-3`) enmarca la imagen de la sección Nosotros.
 
 ## Components
 
 ### Buttons
-- **Primary (CTA de reserva):** píldora dorada (`rounded-full`, `bg-gold`), texto `surface`, hover `bg-gold-dark`.
-- **Secundario ("Reservar →" dentro de tarjeta):** texto dorado claro en mayúsculas pequeñas con tracking amplio, sin fondo; hover a `gold`.
+- **Primary (CTA de reserva):** `rounded-lg`, `bg-gold`, texto `surface`, hover `bg-gold-dark`.
+- **Secundario ("Ver masaje →" dentro de tarjeta):** texto dorado claro en mayúsculas pequeñas con tracking amplio, sin fondo; hover a `gold`.
 
 ### Cards / Nichos de servicio (componente insignia)
-- **Forma:** arco superior amplio (`rounded-t-[3rem]`), base convencional (`rounded-b-2xl`).
+- **Forma:** `rounded-lg` en todas las esquinas.
 - **Fondo:** fotografía a sangre con overlay de gradiente `primary-dark` cuando hay foto real; textura de líneas diagonales doradas sobre `bg-primary` con un ícono de línea propio cuando no la hay.
 - **Estado:** al hover/focus la descripción pasa de 2 líneas (`line-clamp-2`) a completa, la imagen escala levemente, y las tarjetas vecinas se atenúan (`opacity: .55`, `scale: .97`) vía `:has()` — el nicho que visitas se abre, los demás se quedan al fondo.
 - **Variante CTA:** un nicho sin foto, fondo sólido `primary` con la misma textura diagonal dorada, para "¿buscas algo más?".
@@ -143,7 +141,7 @@ Dos lenguajes de esquina conviven a propósito: un arco amplio superior (`rounde
 ### Do:
 - **Do** usar el dorado (`#B58A4A`) solo para la acción de reservar y acentos puntuales, nunca como color de fondo extendido.
 - **Do** resolver el texto sobre foto con degradado desde `primary-dark`, no con recuadros ni cajas.
-- **Do** mantener el arco superior amplio (`rounded-t-[3rem]`) como firma exclusiva de las tarjetas de servicio/puesto.
+- **Do** mantener el radio de esquina en `.5rem` como máximo en todo componente nuevo (botones, tarjetas, imágenes, contenedores).
 - **Do** enlazar cada CTA de reserva a WhatsApp con un mensaje pre-rellenado específico al contexto.
 
 ### Don't:

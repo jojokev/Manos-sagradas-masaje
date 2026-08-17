@@ -2,9 +2,11 @@
 import { Image } from "astro:assets";
 import hotStones from "../assets/images/manos sagradas masajes 03.webp";
 import hotStones2 from "../assets/images/manos sagradas masajes 01.webp";
+import masaje04 from "../assets/images/manos sagradas masajes 04.webp";
+import masaje05 from "../assets/images/manos sagradas masajes 05.webp";
+import masaje06 from "../assets/images/manos sagradas masajes 06.webp";
 
-// Agregar más imágenes a este array cuando estén disponibles (mínimo 4 para el slider final).
-const slides = [hotStones, hotStones2];
+const slides = [hotStones, hotStones2, masaje04, masaje05, masaje06];
 
 const whatsappNumber = "51907529233";
 const whatsappMessage = encodeURIComponent(
@@ -26,7 +28,7 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
           <div class="swiper-slide relative">
             <Image
               src={src}
-              alt="Terapia de masaje con piedras calientes en Manos Sagradas Masajes"
+              alt="Terapia de masaje en Manos Sagradas Masajes"
               class="h-full w-full object-cover"
               widths={[640, 1024, 1600, 1920]}
               sizes="100vw"
@@ -56,7 +58,7 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
         href={whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
-        class="pointer-events-auto mt-8 inline-block rounded-full bg-gold px-8 py-3 text-sm font-semibold tracking-wide text-surface transition-colors hover:bg-gold-dark sm:text-base"
+        class="pointer-events-auto mt-8 inline-block rounded-lg bg-gold px-8 py-3 text-sm font-semibold tracking-wide text-surface transition-colors hover:bg-gold-dark sm:text-base"
       >
         Reserva tu cita
       </a>

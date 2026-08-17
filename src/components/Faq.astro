@@ -1,0 +1,137 @@
+---
+import { Image } from "astro:assets";
+import ambiente from "../assets/images/manos sagradas masajes 06.webp";
+
+const preguntas = [
+  {
+    pregunta: "¿Necesito reservar con anticipación?",
+    respuesta:
+      "Te recomendamos reservar con algunos días de anticipación, sobre todo en temporada alta. Aun así, siempre puedes escribirnos por WhatsApp para consultar disponibilidad de último momento.",
+  },
+  {
+    pregunta: "¿Puedo personalizar la intensidad y el tipo de masaje?",
+    respuesta:
+      "Sí. Cada sesión se adapta a lo que tu cuerpo necesita ese día: cuéntanos tus molestias o preferencias antes de empezar y ajustamos la presión y la técnica contigo.",
+  },
+  {
+    pregunta: "¿Qué debo hacer antes de mi cita?",
+    respuesta:
+      "Solo necesitas llegar unos minutos antes, con ropa cómoda y sin prisa. Evita comidas pesadas justo antes de tu sesión para que puedas relajarte por completo.",
+  },
+  {
+    pregunta: "¿Es seguro reservar un masaje prenatal?",
+    respuesta:
+      "Sí, nuestro masaje prenatal usa técnicas suaves y seguras pensadas para acompañar el embarazo. Cuéntanos tu semana de gestación al reservar para preparar la sesión adecuada.",
+  },
+  {
+    pregunta: "¿Cuánto dura cada sesión?",
+    respuesta:
+      "Depende de la terapia que elijas: nuestras sesiones van entre 30 y 60 minutos. Puedes revisar la duración de cada masaje en la sección de Servicios.",
+  },
+  {
+    pregunta: "¿Qué métodos de pago aceptan?",
+    respuesta:
+      "Escríbenos por WhatsApp y te contamos las opciones de pago disponibles al momento de tu reserva.",
+  },
+];
+---
+
+<section id="preguntas-frecuentes" class="bg-background py-20 sm:py-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="max-w-2xl">
+      <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark">
+        Preguntas frecuentes
+      </p>
+      <h2 class="mt-2 font-display text-3xl font-semibold text-text sm:text-4xl">
+        Resolvemos tus dudas
+      </h2>
+    </div>
+
+    <div class="mt-12 grid gap-12 lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-16">
+      <div class="space-y-4">
+        {
+          preguntas.map((item, index) => (
+            <div
+              class="faq-item overflow-hidden rounded-lg border border-l-4 border-background-alt border-l-transparent bg-surface transition-colors data-[open=true]:border-l-gold"
+              data-open={index === 0 ? "true" : "false"}
+            >
+              <button
+                type="button"
+                class="faq-trigger flex w-full items-center justify-between gap-4 p-6 text-left"
+                aria-expanded={index === 0 ? "true" : "false"}
+                aria-controls={`faq-panel-${index}`}
+              >
+                <span class="font-display text-base text-text sm:text-lg">{item.pregunta}</span>
+                <span class="faq-icon relative h-5 w-5 shrink-0 text-text-muted transition-colors">
+                  <span class="absolute left-0 top-1/2 h-0.5 w-5 -translate-y-1/2 bg-current" />
+                  <span class="faq-icon-vertical absolute left-0 top-1/2 h-0.5 w-5 -translate-y-1/2 bg-current" />
+                </span>
+              </button>
+              <div id={`faq-panel-${index}`} class="faq-panel grid">
+                <div class="min-h-0 overflow-hidden">
+                  <p class="px-6 pb-6 text-sm leading-relaxed text-text-muted sm:text-base">
+                    {item.respuesta}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="relative mx-auto w-full max-w-md lg:mx-0">
+        <div class="absolute -right-4 -top-4 h-full w-full rounded-lg bg-background-alt"></div>
+        <Image
+          src={ambiente}
+          alt="Ambiente cálido de Manos Sagradas Masajes"
+          class="relative aspect-[4/5] w-full rounded-lg object-cover shadow-xl"
+          widths={[400, 640, 800]}
+          sizes="(min-width: 1024px) 32rem, 90vw"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-panel {
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 300ms ease;
+  }
+  .faq-item[data-open="true"] .faq-panel {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-icon-vertical {
+    transform: rotate(0deg);
+    transition: transform 300ms ease;
+  }
+  .faq-item[data-open="true"] .faq-icon-vertical {
+    transform: rotate(90deg);
+  }
+  .faq-item[data-open="true"] .faq-icon {
+    color: var(--color-gold-dark);
+  }
+</style>
+
+<script>
+  const items = document.querySelectorAll<HTMLElement>(".faq-item");
+
+  items.forEach((item) => {
+    const trigger = item.querySelector<HTMLButtonElement>(".faq-trigger");
+
+    trigger?.addEventListener("click", () => {
+      const isOpen = item.dataset.open === "true";
+
+      items.forEach((other) => {
+        other.dataset.open = "false";
+        other.querySelector(".faq-trigger")?.setAttribute("aria-expanded", "false");
+      });
+
+      if (!isOpen) {
+        item.dataset.open = "true";
+        trigger.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+</script>

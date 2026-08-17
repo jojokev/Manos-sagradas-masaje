@@ -1,0 +1,421 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/icons/Logo_manos_sagradas.webp";
+import adventureBg from "../assets/background/adventure-bg.webp";
+
+const direccion =
+  "Plazoleta Belén N.º 1082-A, Tercer piso, Of. 301, Cusco, Perú, 08001";
+const whatsappNumber = "51907529233";
+const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+  "¡Hola! Me gustaría reservar una cita para un masaje.",
+)}`;
+const whatsappFlotanteHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+  "¡Hola! Me gustaría recibir más información sobre los masajes que ofrecen.",
+)}`;
+const mapaHref = `https://www.google.com/maps?q=${encodeURIComponent(direccion)}&output=embed`;
+
+const socialLinks = [
+  { name: "Facebook", href: "https://www.facebook.com/ManosSagradasMasajes/" },
+  { name: "Instagram", href: "https://www.instagram.com/manossagradasmasajes/" },
+  { name: "TikTok", href: "https://www.tiktok.com/@manossagradasmasajes" },
+  { name: "WhatsApp", href: whatsappHref },
+];
+
+// Colores de marca de cada red social para el panel flotante lateral.
+const coloresRedes: Record<string, string> = {
+  Facebook: "#1877F2",
+  Instagram: "linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)",
+  TikTok: "#000000",
+  WhatsApp: "#25D366",
+};
+
+// Páginas propias pendientes de crear; por ahora no enlazan a ningún lado.
+const paginasInformativas = [
+  "Sobre nosotros",
+  "Servicios",
+  "Preguntas frecuentes",
+  "Blog",
+];
+
+const serviciosPopulares = [
+  "Piedras calientes",
+  "Descontracturante",
+  "Relajante",
+  "Terapéutico",
+  "Drenaje linfático",
+];
+
+const anioActual = new Date().getFullYear();
+---
+
+<section
+  id="contactanos"
+  class="bg-background bg-repeat"
+  style={`background-image: url(${adventureBg.src})`}
+>
+  <div class="mx-auto max-w-7xl px-6 py-20 sm:py-28 lg:px-10">
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-8">
+      <div class="max-w-xl">
+        <h2 class="font-display text-3xl font-semibold text-text sm:text-4xl">
+          Reserva tu momento
+        </h2>
+        <p class="mt-5 text-base leading-relaxed text-text-muted sm:text-lg">
+          Escríbenos por WhatsApp y coordinamos la hora que mejor se acomode a
+          tu día. Te esperamos en el corazón de Cusco.
+        </p>
+        <p class="mt-3 font-display text-lg italic text-gold-dark">
+          Porque cuando cuidas de ti, todo fluye mejor.
+        </p>
+
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-8 inline-block rounded-lg bg-gold px-8 py-3 text-sm font-semibold tracking-wide text-surface transition-colors hover:bg-gold-dark sm:text-base"
+        >
+          Reservar mi masaje por WhatsApp
+        </a>
+      </div>
+
+      <div class="overflow-hidden rounded-lg border border-gold/30 shadow-xl">
+        <iframe
+          src={mapaHref}
+          class="h-80 w-full grayscale-[15%] sm:h-96 lg:h-[20rem]"
+          style="border:0;"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación de Manos Sagradas Masajes en Cusco"></iframe>
+      </div>
+    </div>
+
+    <div
+      class="mt-16 grid gap-10 border-t border-background-alt pt-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8"
+    >
+      <div>
+        <div class="flex items-center gap-3">
+          <Image
+            src={logo}
+            alt="Manos Sagradas Masajes"
+            width={128}
+            height={128}
+            class="h-16 w-16 object-contain"
+          />
+          <span class="font-display text-lg text-text"
+            >Manos Sagradas Masajes</span
+          >
+        </div>
+        <p class="mt-4 text-sm leading-relaxed text-text-muted">
+          Un espacio de masajes en el corazón de Cusco, pensado para detener el
+          ruido y regalarte un momento de cuidado personal.
+        </p>
+        <div class="mt-5 flex items-center gap-3">
+          {
+            socialLinks.map((social) => (
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.name}
+                class="flex h-9 w-9 items-center justify-center rounded-lg border border-gold/30 text-text-muted transition-colors hover:border-gold hover:text-gold-dark"
+              >
+                {social.name === "Facebook" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="h-4 w-4"
+                    aria-hidden="true"
+                  >
+                    <path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.876h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94Z" />
+                  </svg>
+                )}
+                {social.name === "Instagram" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    class="h-4 w-4"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle
+                      cx="17.2"
+                      cy="6.8"
+                      r="1"
+                      fill="currentColor"
+                      stroke="none"
+                    />
+                  </svg>
+                )}
+                {social.name === "TikTok" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="h-4 w-4"
+                    aria-hidden="true"
+                  >
+                    <path d="M16.6 3h-3.2v12.6a2.7 2.7 0 1 1-2.2-2.65v-3.24a6 6 0 1 0 5.4 5.97V9.1a6.9 6.9 0 0 0 4.1 1.34V7.24A3.9 3.9 0 0 1 16.6 3Z" />
+                  </svg>
+                )}
+                {social.name === "WhatsApp" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="h-4 w-4"
+                    aria-hidden="true"
+                  >
+                    <path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.23h.01c5.5 0 9.96-4.45 9.96-9.95S17.54 2 12.04 2Zm5.8 14.24c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.12a17 17 0 0 1-1.87-.7 12.7 12.7 0 0 1-4.9-4.34c-.6-.82-1-1.75-1-2.7 0-.9.47-1.36.8-1.7.2-.2.44-.28.6-.28h.42c.14 0 .33-.02.5.4.2.5.66 1.7.72 1.83.06.13.1.28.02.44-.08.16-.13.27-.26.42-.14.14-.28.32-.4.43-.13.13-.27.28-.12.55.16.28.7 1.14 1.5 1.85 1.03.92 1.9 1.2 2.18 1.34.28.13.44.11.6-.06.17-.18.7-.8.9-1.08.19-.28.38-.23.63-.14.26.1 1.6.75 1.87.89.28.13.46.2.53.31.07.12.07.68-.17 1.36Z" />
+                  </svg>
+                )}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wide text-text">
+          Explorar
+        </h3>
+        <ul class="mt-4 space-y-3 text-sm">
+          {
+            paginasInformativas.map((pagina) => (
+              <li>
+                <a
+                  href="#"
+                  class="inline-flex items-center gap-2 text-text-muted transition-colors hover:text-gold-dark"
+                >
+                  <span aria-hidden="true">→</span>
+                  {pagina}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wide text-text">
+          Servicios populares
+        </h3>
+        <ul class="mt-4 space-y-3 text-sm">
+          {
+            serviciosPopulares.map((servicio) => (
+              <li>
+                <a
+                  href="#servicios"
+                  class="inline-flex items-center gap-2 text-text-muted transition-colors hover:text-gold-dark"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="h-4 w-4 shrink-0 text-gold"
+                    aria-hidden="true"
+                  >
+                    <path d="M4 12l5 5L20 6" />
+                  </svg>
+                  {servicio}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xs font-semibold uppercase tracking-wide text-text">
+          Visítanos
+        </h3>
+        <ul class="mt-4 space-y-4 text-sm text-text-muted">
+          <li class="flex gap-3">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mt-0.5 h-4 w-4 shrink-0 text-gold-dark"
+              aria-hidden="true"
+            >
+              <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"
+              ></path>
+              <circle cx="12" cy="9.5" r="2.5"></circle>
+            </svg>
+            <div>
+              <p class="font-semibold text-text">Ubicación</p>
+              <p class="mt-1">{direccion}</p>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mt-0.5 h-4 w-4 shrink-0 text-gold-dark"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 5c0-.6.4-1 1-1h3l2 5-2 1.5a11 11 0 0 0 5.5 5.5L14 14l5 2v3c0 .6-.4 1-1 1A15 15 0 0 1 4 5Z"
+              ></path>
+            </svg>
+            <div>
+              <p class="font-semibold text-text">Teléfono</p>
+              <a
+                href={`tel:+${whatsappNumber}`}
+                class="mt-1 inline-block transition-colors hover:text-gold-dark"
+              >
+                +51 907 529 233
+              </a>
+            </div>
+          </li>
+          <li class="flex gap-3">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="mt-0.5 h-4 w-4 shrink-0 text-gold-dark"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v5l3 3"></path>
+            </svg>
+            <div>
+              <p class="font-semibold text-text">Horario</p>
+              <p class="mt-1">Lunes a sábado: 9:00 a.m. – 6:00 p.m.</p>
+              <p>Domingo: cerrado</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-background-alt">
+    <div class="mx-auto max-w-7xl px-6 py-8 text-center lg:px-10">
+      <p class="text-sm text-text-muted">
+        © {anioActual} Manos Sagradas Masajes. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div
+  class="fixed left-6 top-1/2 z-40 flex -translate-y-1/2 flex-col gap-3"
+>
+  {
+    socialLinks.map((social) => (
+      <a
+        href={social.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={social.name}
+        style={`background: ${coloresRedes[social.name]}`}
+        class="flex h-11 w-11 items-center justify-center rounded-lg text-surface shadow-lg transition-transform hover:scale-105"
+      >
+        {social.name === "Facebook" && (
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="h-5 w-5"
+            aria-hidden="true"
+          >
+            <path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.876h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94Z" />
+          </svg>
+        )}
+        {social.name === "Instagram" && (
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            class="h-5 w-5"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+          </svg>
+        )}
+        {social.name === "TikTok" && (
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="h-5 w-5"
+            aria-hidden="true"
+          >
+            <path d="M16.6 3h-3.2v12.6a2.7 2.7 0 1 1-2.2-2.65v-3.24a6 6 0 1 0 5.4 5.97V9.1a6.9 6.9 0 0 0 4.1 1.34V7.24A3.9 3.9 0 0 1 16.6 3Z" />
+          </svg>
+        )}
+        {social.name === "WhatsApp" && (
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="h-5 w-5"
+            aria-hidden="true"
+          >
+            <path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.23h.01c5.5 0 9.96-4.45 9.96-9.95S17.54 2 12.04 2Zm5.8 14.24c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.12a17 17 0 0 1-1.87-.7 12.7 12.7 0 0 1-4.9-4.34c-.6-.82-1-1.75-1-2.7 0-.9.47-1.36.8-1.7.2-.2.44-.28.6-.28h.42c.14 0 .33-.02.5.4.2.5.66 1.7.72 1.83.06.13.1.28.02.44-.08.16-.13.27-.26.42-.14.14-.28.32-.4.43-.13.13-.27.28-.12.55.16.28.7 1.14 1.5 1.85 1.03.92 1.9 1.2 2.18 1.34.28.13.44.11.6-.06.17-.18.7-.8.9-1.08.19-.28.38-.23.63-.14.26.1 1.6.75 1.87.89.28.13.46.2.53.31.07.12.07.68-.17 1.36Z" />
+          </svg>
+        )}
+      </a>
+    ))
+  }
+</div>
+
+<div class="group fixed bottom-6 right-6 z-50 flex items-center gap-3">
+  <span
+    class="pointer-events-none translate-x-2 whitespace-nowrap rounded-lg bg-primary px-3 py-2 text-sm font-medium text-surface opacity-0 shadow-lg transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+  >
+    Pedir información
+  </span>
+  <a
+    href={whatsappFlotanteHref}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Escríbenos por WhatsApp para pedir información"
+    class="whatsapp-fab flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-surface shadow-xl transition-transform hover:scale-105"
+  >
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      class="h-7 w-7"
+      aria-hidden="true"
+    >
+      <path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.23h.01c5.5 0 9.96-4.45 9.96-9.95S17.54 2 12.04 2Zm5.8 14.24c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.12a17 17 0 0 1-1.87-.7 12.7 12.7 0 0 1-4.9-4.34c-.6-.82-1-1.75-1-2.7 0-.9.47-1.36.8-1.7.2-.2.44-.28.6-.28h.42c.14 0 .33-.02.5.4.2.5.66 1.7.72 1.83.06.13.1.28.02.44-.08.16-.13.27-.26.42-.14.14-.28.32-.4.43-.13.13-.27.28-.12.55.16.28.7 1.14 1.5 1.85 1.03.92 1.9 1.2 2.18 1.34.28.13.44.11.6-.06.17-.18.7-.8.9-1.08.19-.28.38-.23.63-.14.26.1 1.6.75 1.87.89.28.13.46.2.53.31.07.12.07.68-.17 1.36Z" />
+    </svg>
+  </a>
+</div>
+
+<style>
+  /* Anillo pulsante suave para llamar la atención hacia el botón */
+  @keyframes whatsapp-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+  }
+
+  .whatsapp-fab {
+    animation: whatsapp-pulse 2.5s ease-out infinite;
+  }
+
+  .whatsapp-fab:hover {
+    animation-play-state: paused;
+  }
+</style>

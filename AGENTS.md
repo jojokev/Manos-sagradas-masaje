@@ -5,6 +5,9 @@
 - Dirección: Plazoleta Belén N.º 1082-A, Tercer piso, Of. 301, Cusco, Peru, 08001.
 - Teléfono y WhatsApp: +51 907 529 233.
 - Página de Facebook: https://www.facebook.com/ManosSagradasMasajes/
+- Instagram: https://www.instagram.com/manossagradasmasajes/
+- TikTok: https://www.tiktok.com/@manossagradasmasajes
+- Horario de atención: lunes a sábado, 9:00 a.m. – 6:00 p.m. Domingo cerrado.
 
 ## Idioma
 

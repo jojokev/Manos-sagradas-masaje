@@ -22,7 +22,7 @@ Atención personalizada y trato cercano, no la tradición andina. El competidor 
 
 - Local físico: Plazoleta Belén N.º 1082-A, Tercer piso, Of. 301, Cusco, Perú, 08001.
 - Reservas y contacto principal por WhatsApp: +51 907 529 233.
-- Presencia en redes: Facebook (https://www.facebook.com/ManosSagradasMasajes/); Instagram y TikTok existen como enlaces en el header pero aún no tienen URL real (placeholder `#`).
+- Presencia en redes: Facebook (https://www.facebook.com/ManosSagradasMasajes/), Instagram (https://www.instagram.com/manossagradasmasajes/) y TikTok (https://www.tiktok.com/@manossagradasmasajes).
 - La navegación del sitio (Header.astro) ya referencia secciones `#nosotros`, `#servicios`, `#contactanos`, `#galeria` que todavía no existen en `index.astro` — son la construcción pendiente inmediata.
 
 ## Capabilities and Constraints
