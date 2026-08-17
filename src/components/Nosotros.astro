@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import facial from "../assets/images/manos sagradas masajes 02.webp";
+
+const credenciales = [
+  {
+    label: "Atención 100% personalizada",
+    detail: "Cada sesión se adapta a lo que tu cuerpo necesita ese día.",
+  },
+  {
+    label: "Ambiente tranquilo y cómodo",
+    detail: "Un espacio pensado para detener el ruido y soltar el estrés.",
+  },
+  {
+    label: "En el corazón de Cusco",
+    detail: "A pasos de la Plazoleta Belén, en un espacio cálido y sereno.",
+  },
+];
+---
+
+<section id="nosotros" class="bg-surface py-20 sm:py-28">
+  <div class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-10">
+    <div class="relative mx-auto w-full max-w-md lg:mx-0">
+      <div class="absolute -inset-3 rounded-[2.5rem] border border-gold/40"></div>
+      <Image
+        src={facial}
+        alt="Terapeuta de Manos Sagradas Masajes realizando un masaje facial relajante"
+        class="aspect-[4/5] w-full rounded-[2rem] object-cover shadow-xl"
+        widths={[400, 640, 800]}
+        sizes="(min-width: 1024px) 32rem, 90vw"
+      />
+    </div>
+
+    <div class="max-w-xl">
+      <h2 class="font-display text-3xl font-semibold text-text sm:text-4xl">
+        Un espacio pensado para ti
+      </h2>
+      <p class="mt-5 text-base leading-relaxed text-text-muted sm:text-lg">
+        En Manos Sagradas creamos un lugar para detener el ruido, soltar el
+        estrés y regalarte un momento de cuidado personal. Cada sesión es
+        personalizada, en un ambiente tranquilo y cómodo, diseñado para tu
+        bienestar. Porque cuando cuidas de ti, todo fluye mejor.
+      </p>
+
+      <ul class="mt-8 space-y-6 border-t border-background-alt pt-8">
+        {
+          credenciales.map((item) => (
+            <li class="flex gap-4">
+              <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gold" />
+              <div>
+                <p class="font-display text-lg text-text">{item.label}</p>
+                <p class="mt-1 text-sm text-text-muted">{item.detail}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
