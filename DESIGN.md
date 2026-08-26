@@ -18,7 +18,7 @@ colors:
   success: "#687A5A"
 typography:
   display:
-    fontFamily: "Playfair Display, ui-serif, Georgia, serif"
+    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
     fontWeight: 600
   body:
     fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
@@ -51,8 +51,8 @@ soltar el estrés y regalarte un momento de cuidado personal") a una
 landing de una sola página: cada terapia vive en un nicho cálido y sobrio
 — eco del propio nombre "Manos Sagradas" — que se abre cuando te
 detienes, nunca una vitrina de precios ni una narrativa de mercado. La
-paleta marrón chocolate y dorado, junto con Playfair Display para los
-títulos, mantiene el tono íntimo de un espacio personal, no el de una
+paleta marrón chocolate y dorado, junto con Inter para títulos y
+cuerpo de texto, mantiene el tono íntimo de un espacio personal, no el de una
 cadena de spas ni una narrativa "ancestral andina" (ese mensaje ya
 pertenece al competidor dominante del rubro en Cusco).
 
@@ -95,10 +95,10 @@ Paleta cálida y terrosa de un solo acento: marrones como base y superficie, un 
 
 ## Typography
 
-**Display Font:** Playfair Display (con ui-serif, Georgia, serif como respaldo)
+**Display Font:** Inter (con ui-sans-serif, system-ui, sans-serif como respaldo)
 **Body Font:** Inter (con ui-sans-serif, system-ui, sans-serif como respaldo)
 
-**Character:** Un serif editorial con peso para los títulos, transmitiendo calidez artesanal, combinado con un sans-serif neutro y legible para el cuerpo de texto y la interfaz.
+**Character:** Una sola familia sans-serif neutra y muy legible, con mayor peso (600) en títulos y peso regular (400) en cuerpo de texto e interfaz, para un tono cálido, limpio y contemporáneo.
 
 ### Hierarchy
 - **Display** (600, `text-4xl` a `text-6xl` con `sm:`/`lg:`, `font-display`): titulares de sección y el hero.
@@ -128,13 +128,14 @@ Radio de esquina único y contenido en todo el sitio: `rounded-lg` (`.5rem`) com
 - **Secundario ("Ver masaje →" dentro de tarjeta):** texto dorado claro en mayúsculas pequeñas con tracking amplio, sin fondo; hover a `gold`.
 
 ### Cards / Nichos de servicio (componente insignia)
-- **Forma:** `rounded-lg` en todas las esquinas.
-- **Fondo:** fotografía a sangre con overlay de gradiente `primary-dark` cuando hay foto real; textura de líneas diagonales doradas sobre `bg-primary` con un ícono de línea propio cuando no la hay.
-- **Estado:** al hover/focus la descripción pasa de 2 líneas (`line-clamp-2`) a completa, la imagen escala levemente, y las tarjetas vecinas se atenúan (`opacity: .55`, `scale: .97`) vía `:has()` — el nicho que visitas se abre, los demás se quedan al fondo.
-- **Variante CTA:** un nicho sin foto, fondo sólido `primary` con la misma textura diagonal dorada, para "¿buscas algo más?".
+- **Forma:** tarjeta clara (`bg-surface`) `rounded-lg` en todas las esquinas; la foto ocupa la mitad superior con solo las esquinas superiores redondeadas (`rounded-t-lg`).
+- **Contenido:** foto (`imagenDestacada` del content collection), una etiqueta dorada (`bg-gold`, `rounded-lg`, nunca píldora) con la primera categoría del servicio, sobrepuesta al borde inferior de la foto; debajo, en la mitad blanca, título y `descripcionCorta`.
+- **Estado:** al hover/focus la imagen escala levemente y la sombra de la tarjeta se intensifica.
+- **Responsive:** por debajo de `lg` es un carrusel (Swiper, con flechas propias); desde `lg` deja de ser slide y pasa a una grilla CSS de 3 columnas — máximo 9 tarjetas en total (8 servicios + la tarjeta CTA).
+- **Variante CTA:** una tarjeta sólida `primary` con textura diagonal dorada, para "¿buscas algo más?", siempre la última del set.
 
 ### Navigation
-- Header transparente y absoluto sobre el hero, texto `surface`; menú móvil como panel lateral (`aside`) sobre `surface` con texto `text`.
+- Header único para todo el sitio (`Header.astro`, montado en `Layout.astro`), en flujo normal del documento — ya no flota sobre el hero. Dos franjas: barra superior (`primary-dark`, solo desde `lg`) con dirección, teléfono y redes sociales; barra principal (`surface`) con logo rectangular, nav y CTA "Reservar". Menú móvil como panel lateral (`aside`) sobre `surface` con texto `text`.
 
 ## Do's and Don'ts
 

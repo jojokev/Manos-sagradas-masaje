@@ -1,0 +1,36 @@
+---
+interface Props {
+  parte1: string;
+  parte2: string;
+  as?: "h1" | "h2";
+  align?: "center" | "left";
+}
+
+const { parte1, parte2, as: Tag = "h2", align = "center" } = Astro.props;
+const alineado = align === "left" ? "text-center lg:text-left" : "text-center";
+const lineaAlineada = align === "left" ? "justify-center lg:justify-start" : "justify-center";
+---
+
+<div class={alineado}>
+  <Tag class="font-display text-3xl font-semibold sm:text-4xl">
+    <span class="text-gold">{parte1}</span> <span class="text-text">{parte2}</span>
+  </Tag>
+  <div class={`mt-4 flex items-center gap-3 ${lineaAlineada}`}>
+    <span class="h-px w-10 bg-gold/40" aria-hidden="true"></span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      class="text-gold"
+      aria-hidden="true"
+    >
+      <path d="M0 0h24v24H0z" fill="none" />
+      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+        <path d="M8 18C19.955 18 20.917 7.83 20.994 2.997a.983.983 0 0 0-1.006-.988C3 2.321 3 10.557 3 18v4" />
+        <path d="M3 18s0-6 8-7" />
+      </g>
+    </svg>
+    <span class="h-px w-10 bg-gold/40" aria-hidden="true"></span>
+  </div>
+</div>

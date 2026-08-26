@@ -1,19 +1,22 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../assets/icons/Logo_manos_sagradas.webp";
+import logo from "../assets/icons/Logo rectangular manos sagradas.webp";
 
-const navLinks = [
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Contáctanos", href: "#contactanos" },
-  { label: "Galería", href: "#galeria" },
-];
+const direccion =
+  "Plazoleta Belén N.º 1082-A, Tercer piso, Of. 301, Cusco, Perú, 08001";
+const mapaHref = `https://www.google.com/maps?q=${encodeURIComponent(direccion)}`;
 
 const whatsappNumber = "51907529233";
-const whatsappMessage = encodeURIComponent(
-  "¡Hola! Me gustaría saber más sobre sus masajes, ¿me pueden ayudar?",
-);
-const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+  "¡Hola! Me gustaría reservar una cita para un masaje.",
+)}`;
+
+const navLinks = [
+  { label: "Nosotros", href: "/#nosotros", icon: "nosotros" },
+  { label: "Servicios", href: "/#servicios", icon: "servicios" },
+  { label: "Galería", href: "/#galeria", icon: "galeria" },
+  { label: "Contáctanos", href: "/#contactanos", icon: "contacto" },
+] as const;
 
 const socialLinks = [
   { name: "Facebook", href: "https://www.facebook.com/ManosSagradasMasajes/" },
@@ -26,123 +29,231 @@ const socialLinks = [
 ];
 ---
 
-<header class="absolute inset-x-0 top-0 z-30 w-full">
+<div class="hidden bg-primary-dark lg:block">
   <div
-    class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-5 lg:grid lg:grid-cols-3 lg:px-10"
+    class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-2 text-xs text-background-alt lg:px-10"
   >
-    <a
-      href="/"
-      class="flex items-center lg:justify-self-start"
-      aria-label="Manos Sagradas Masajes, ir al inicio"
-    >
-      <Image
-        src={logo}
-        alt="Manos Sagradas Masajes"
-        width={128}
-        height={128}
-        class="h-12 w-12 object-contain lg:h-18 lg:w-18"
-      />
-    </a>
-
-    <nav class="hidden lg:flex lg:justify-self-center lg:gap-10">
-      {
-        navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="text-sm uppercase font-medium tracking-wide text-surface transition-colors hover:text-gold-light"
-          >
-            {link.label}
-          </a>
-        ))
-      }
-    </nav>
-
-    <div class="flex items-center gap-3 sm:gap-4 lg:justify-self-end lg:gap-6">
-      <div class="flex items-center gap-3 sm:gap-4">
-        {
-          socialLinks.map((social) => (
-            <a
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={social.name}
-              class="text-surface transition-colors hover:text-gold-light"
-            >
-              {social.name === "Facebook" && (
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="h-5 w-5"
-                  aria-hidden="true"
-                >
-                  <path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.876h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94Z" />
-                </svg>
-              )}
-              {social.name === "Instagram" && (
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.6"
-                  class="h-5 w-5"
-                  aria-hidden="true"
-                >
-                  <rect x="3" y="3" width="18" height="18" rx="5" />
-                  <circle cx="12" cy="12" r="4" />
-                  <circle
-                    cx="17.2"
-                    cy="6.8"
-                    r="1"
-                    fill="currentColor"
-                    stroke="none"
-                  />
-                </svg>
-              )}
-              {social.name === "TikTok" && (
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="h-5 w-5"
-                  aria-hidden="true"
-                >
-                  <path d="M16.6 3h-3.2v12.6a2.7 2.7 0 1 1-2.2-2.65v-3.24a6 6 0 1 0 5.4 5.97V9.1a6.9 6.9 0 0 0 4.1 1.34V7.24A3.9 3.9 0 0 1 16.6 3Z" />
-                </svg>
-              )}
-              {social.name === "WhatsApp" && (
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="h-5 w-5"
-                  aria-hidden="true"
-                >
-                  <path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.23h.01c5.5 0 9.96-4.45 9.96-9.95S17.54 2 12.04 2Zm5.8 14.24c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.12a17 17 0 0 1-1.87-.7 12.7 12.7 0 0 1-4.9-4.34c-.6-.82-1-1.75-1-2.7 0-.9.47-1.36.8-1.7.2-.2.44-.28.6-.28h.42c.14 0 .33-.02.5.4.2.5.66 1.7.72 1.83.06.13.1.28.02.44-.08.16-.13.27-.26.42-.14.14-.28.32-.4.43-.13.13-.27.28-.12.55.16.28.7 1.14 1.5 1.85 1.03.92 1.9 1.2 2.18 1.34.28.13.44.11.6-.06.17-.18.7-.8.9-1.08.19-.28.38-.23.63-.14.26.1 1.6.75 1.87.89.28.13.46.2.53.31.07.12.07.68-.17 1.36Z" />
-                </svg>
-              )}
-            </a>
-          ))
-        }
-      </div>
-
-      <button
-        id="menu-open"
-        type="button"
-        class="flex items-center justify-center text-surface lg:hidden"
-        aria-label="Abrir menú"
-        aria-controls="mobile-menu"
-        aria-expanded="false"
+    <div class="flex items-center gap-6">
+      <a
+        href={mapaHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        title={direccion}
+        class="flex items-center gap-2 transition-colors hover:text-gold-light"
       >
         <svg
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="1.8"
+          stroke-width="1.6"
           stroke-linecap="round"
-          class="h-6 w-6"
+          stroke-linejoin="round"
+          class="h-4.5 w-4.5 shrink-0"
           aria-hidden="true"
         >
-          <path d="M4 6h16M4 12h16M4 18h16"></path>
+          <path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z"
+          ></path>
+          <circle cx="12" cy="9.5" r="2.5"></circle>
         </svg>
-      </button>
+        Plazoleta Belén, Cusco
+      </a>
+      <a
+        href={`tel:+${whatsappNumber}`}
+        class="flex items-center gap-2 transition-colors hover:text-gold-light"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-4.5 w-4.5 shrink-0"
+          aria-hidden="true"
+        >
+          <path
+            d="M4 5c0-.6.4-1 1-1h3l2 5-2 1.5a11 11 0 0 0 5.5 5.5L14 14l5 2v3c0 .6-.4 1-1 1A15 15 0 0 1 4 5Z"
+          ></path>
+        </svg>
+        +51 907 529 233
+      </a>
+    </div>
+
+    <div class="flex items-center gap-4">
+      {
+        socialLinks.map((social) => (
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={social.name}
+            class="transition-colors hover:text-gold-light"
+          >
+            {social.name === "Facebook" && (
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="h-4.5 w-4.5"
+                aria-hidden="true"
+              >
+                <path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.876h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94Z" />
+              </svg>
+            )}
+            {social.name === "Instagram" && (
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                class="h-4.5 w-4.5"
+                aria-hidden="true"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle
+                  cx="17.2"
+                  cy="6.8"
+                  r="1"
+                  fill="currentColor"
+                  stroke="none"
+                />
+              </svg>
+            )}
+            {social.name === "TikTok" && (
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="h-4.5 w-4.5"
+                aria-hidden="true"
+              >
+                <path d="M16.6 3h-3.2v12.6a2.7 2.7 0 1 1-2.2-2.65v-3.24a6 6 0 1 0 5.4 5.97V9.1a6.9 6.9 0 0 0 4.1 1.34V7.24A3.9 3.9 0 0 1 16.6 3Z" />
+              </svg>
+            )}
+            {social.name === "WhatsApp" && (
+              <svg
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="h-4.5 w-4.5"
+                aria-hidden="true"
+              >
+                <path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.23h.01c5.5 0 9.96-4.45 9.96-9.95S17.54 2 12.04 2Zm5.8 14.24c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.12a17 17 0 0 1-1.87-.7 12.7 12.7 0 0 1-4.9-4.34c-.6-.82-1-1.75-1-2.7 0-.9.47-1.36.8-1.7.2-.2.44-.28.6-.28h.42c.14 0 .33-.02.5.4.2.5.66 1.7.72 1.83.06.13.1.28.02.44-.08.16-.13.27-.26.42-.14.14-.28.32-.4.43-.13.13-.27.28-.12.55.16.28.7 1.14 1.5 1.85 1.03.92 1.9 1.2 2.18 1.34.28.13.44.11.6-.06.17-.18.7-.8.9-1.08.19-.28.38-.23.63-.14.26.1 1.6.75 1.87.89.28.13.46.2.53.31.07.12.07.68-.17 1.36Z" />
+              </svg>
+            )}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<header class="sticky top-0 z-30 w-full bg-surface">
+  <div class="border-b border-background-alt">
+    <div
+      class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-10"
+    >
+      <a href="/" aria-label="Manos Sagradas Masajes, ir al inicio">
+        <Image
+          src={logo}
+          alt="Manos Sagradas Masajes"
+          width={900}
+          height={340}
+          class="h-10 w-auto object-contain lg:h-12"
+        />
+      </a>
+
+      <nav class="hidden lg:flex lg:items-center lg:gap-8">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-text transition-colors hover:text-gold-dark"
+            >
+              {link.icon === "nosotros" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-4.5 w-4.5 shrink-0"
+                  aria-hidden="true"
+                >
+                  <path d="M12 20s-7-4.4-9.3-8.8C1 8 2.4 4.5 6 4.5c2 0 3.3 1.1 4 2.2.7-1.1 2-2.2 4-2.2 3.6 0 5 3.5 3.3 6.7C19 15.6 12 20 12 20Z" />
+                </svg>
+              )}
+              {link.icon === "servicios" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-4.5 w-4.5 shrink-0"
+                  aria-hidden="true"
+                >
+                  <path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6L12 3Z" />
+                </svg>
+              )}
+              {link.icon === "galeria" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-4.5 w-4.5 shrink-0"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="4" width="18" height="15" rx="2" />
+                  <circle cx="8.5" cy="9.5" r="1.5" />
+                  <path d="M21 16l-5.5-5.5-4 4L8 12l-5 5" />
+                </svg>
+              )}
+              {link.icon === "contacto" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-4.5 w-4.5 shrink-0"
+                  aria-hidden="true"
+                >
+                  <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9A1.5 1.5 0 0 1 18.5 16H9l-4 3.5V16H5.5A1.5 1.5 0 0 1 4 14.5v-9Z" />
+                </svg>
+              )}
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+
+      <div class="flex items-center gap-4 lg:hidden">
+        <button
+          id="menu-open"
+          type="button"
+          class="flex items-center justify-center text-text"
+          aria-label="Abrir menú"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            class="h-6 w-6"
+            aria-hidden="true"
+          >
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -157,9 +268,9 @@ const socialLinks = [
       <Image
         src={logo}
         alt="Manos Sagradas Masajes"
-        width={48}
-        height={48}
-        class="h-11 w-11 object-contain"
+        width={900}
+        height={340}
+        class="h-9 w-auto object-contain"
       />
       <button
         id="menu-close"
@@ -185,43 +296,193 @@ const socialLinks = [
         navLinks.map((link) => (
           <a
             href={link.href}
-            class="border-b border-background-alt py-4 text-base font-medium tracking-wide text-text transition-colors hover:text-gold-dark"
+            class="flex items-center gap-3 border-b border-background-alt py-4 text-base font-medium tracking-wide text-text transition-colors hover:text-gold-dark"
           >
+            {link.icon === "nosotros" && (
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-5 w-5 shrink-0 text-gold-dark"
+                aria-hidden="true"
+              >
+                <path d="M12 20s-7-4.4-9.3-8.8C1 8 2.4 4.5 6 4.5c2 0 3.3 1.1 4 2.2.7-1.1 2-2.2 4-2.2 3.6 0 5 3.5 3.3 6.7C19 15.6 12 20 12 20Z" />
+              </svg>
+            )}
+            {link.icon === "servicios" && (
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-5 w-5 shrink-0 text-gold-dark"
+                aria-hidden="true"
+              >
+                <path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6L12 3Z" />
+              </svg>
+            )}
+            {link.icon === "galeria" && (
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-5 w-5 shrink-0 text-gold-dark"
+                aria-hidden="true"
+              >
+                <rect x="3" y="4" width="18" height="15" rx="2" />
+                <circle cx="8.5" cy="9.5" r="1.5" />
+                <path d="M21 16l-5.5-5.5-4 4L8 12l-5 5" />
+              </svg>
+            )}
+            {link.icon === "contacto" && (
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-5 w-5 shrink-0 text-gold-dark"
+                aria-hidden="true"
+              >
+                <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9A1.5 1.5 0 0 1 18.5 16H9l-4 3.5V16H5.5A1.5 1.5 0 0 1 4 14.5v-9Z" />
+              </svg>
+            )}
             {link.label}
           </a>
         ))
       }
     </nav>
+    <div
+      class="mt-auto flex flex-col gap-4 border-t border-background-alt px-6 py-5"
+    >
+      <a
+        href={`tel:+${whatsappNumber}`}
+        class="text-center text-sm text-text-muted transition-colors hover:text-gold-dark"
+      >
+        +51 907 529 233
+      </a>
+      <div class="flex items-center justify-center gap-4">
+        {
+          socialLinks.map((social) => (
+            <a
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.name}
+              class="flex h-9 w-9 items-center justify-center rounded-lg border border-gold/30 text-text-muted transition-colors hover:border-gold hover:text-gold-dark"
+            >
+              {social.name === "Facebook" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="h-4.5 w-4.5"
+                  aria-hidden="true"
+                >
+                  <path d="M22 12.06C22 6.505 17.523 2 12 2S2 6.505 2 12.06c0 5.02 3.657 9.184 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562v1.876h2.773l-.443 2.91h-2.33V22c4.78-.756 8.437-4.92 8.437-9.94Z" />
+                </svg>
+              )}
+              {social.name === "Instagram" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  class="h-4.5 w-4.5"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle
+                    cx="17.2"
+                    cy="6.8"
+                    r="1"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              )}
+              {social.name === "TikTok" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="h-4.5 w-4.5"
+                  aria-hidden="true"
+                >
+                  <path d="M16.6 3h-3.2v12.6a2.7 2.7 0 1 1-2.2-2.65v-3.24a6 6 0 1 0 5.4 5.97V9.1a6.9 6.9 0 0 0 4.1 1.34V7.24A3.9 3.9 0 0 1 16.6 3Z" />
+                </svg>
+              )}
+              {social.name === "WhatsApp" && (
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="h-4.5 w-4.5"
+                  aria-hidden="true"
+                >
+                  <path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.23h.01c5.5 0 9.96-4.45 9.96-9.95S17.54 2 12.04 2Zm5.8 14.24c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.12.11-1.8-.12a17 17 0 0 1-1.87-.7 12.7 12.7 0 0 1-4.9-4.34c-.6-.82-1-1.75-1-2.7 0-.9.47-1.36.8-1.7.2-.2.44-.28.6-.28h.42c.14 0 .33-.02.5.4.2.5.66 1.7.72 1.83.06.13.1.28.02.44-.08.16-.13.27-.26.42-.14.14-.28.32-.4.43-.13.13-.27.28-.12.55.16.28.7 1.14 1.5 1.85 1.03.92 1.9 1.2 2.18 1.34.28.13.44.11.6-.06.17-.18.7-.8.9-1.08.19-.28.38-.23.63-.14.26.1 1.6.75 1.87.89.28.13.46.2.53.31.07.12.07.68-.17 1.36Z" />
+                </svg>
+              )}
+            </a>
+          ))
+        }
+      </div>
+    </div>
   </aside>
 </header>
 
 <script>
-  const openBtn = document.getElementById("menu-open");
-  const closeBtn = document.getElementById("menu-close");
-  const backdrop = document.getElementById("menu-backdrop");
-  const menu = document.getElementById("mobile-menu");
+  // Con <ClientRouter /> este script no se re-ejecuta en cada navegación,
+  // así que el menú se reengancha a mano en cada "astro:page-load" y se
+  // limpia con AbortController antes de volver a engancharse.
+  let controller: AbortController | undefined;
 
-  function openMenu() {
-    menu?.classList.remove("translate-x-full");
-    backdrop?.classList.remove("hidden");
-    openBtn?.setAttribute("aria-expanded", "true");
-    document.body.classList.add("overflow-hidden");
+  function initMenu() {
+    controller?.abort();
+    controller = new AbortController();
+    const { signal } = controller;
+
+    const openBtn = document.getElementById("menu-open");
+    const closeBtn = document.getElementById("menu-close");
+    const backdrop = document.getElementById("menu-backdrop");
+    const menu = document.getElementById("mobile-menu");
+
+    function openMenu() {
+      menu?.classList.remove("translate-x-full");
+      backdrop?.classList.remove("hidden");
+      openBtn?.setAttribute("aria-expanded", "true");
+      document.body.classList.add("overflow-hidden");
+    }
+
+    function closeMenu() {
+      menu?.classList.add("translate-x-full");
+      backdrop?.classList.add("hidden");
+      openBtn?.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    openBtn?.addEventListener("click", openMenu, { signal });
+    closeBtn?.addEventListener("click", closeMenu, { signal });
+    backdrop?.addEventListener("click", closeMenu, { signal });
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (event.key === "Escape") closeMenu();
+      },
+      { signal },
+    );
+    menu
+      ?.querySelectorAll("a")
+      .forEach((link) => link.addEventListener("click", closeMenu, { signal }));
   }
 
-  function closeMenu() {
-    menu?.classList.add("translate-x-full");
-    backdrop?.classList.add("hidden");
-    openBtn?.setAttribute("aria-expanded", "false");
-    document.body.classList.remove("overflow-hidden");
-  }
-
-  openBtn?.addEventListener("click", openMenu);
-  closeBtn?.addEventListener("click", closeMenu);
-  backdrop?.addEventListener("click", closeMenu);
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeMenu();
-  });
-  menu
-    ?.querySelectorAll("a")
-    .forEach((link) => link.addEventListener("click", closeMenu));
+  initMenu();
+  document.addEventListener("astro:page-load", initMenu);
 </script>

@@ -1,0 +1,82 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Titulo from "../components/Titulo.astro";
+import Footer from "../components/Footer.astro";
+
+const whatsappNumber = "51907529233";
+const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+  "¡Hola! Estaba navegando su página web y no encontré lo que buscaba, ¿me ayudan?",
+)}`;
+
+const enlaces = [
+  { label: "Inicio", href: "/" },
+  { label: "Servicios", href: "/#servicios" },
+  { label: "Preguntas frecuentes", href: "/#preguntas-frecuentes" },
+  { label: "Contáctanos", href: "/#contactanos" },
+];
+---
+
+<Layout
+  title="Página no encontrada | Manos Sagradas Masajes"
+  description="La página que buscas no existe o fue movida. Vuelve al inicio de Manos Sagradas Masajes."
+>
+  <section class="bg-background py-24 sm:py-32">
+    <div class="mx-auto max-w-2xl px-6 text-center lg:px-10">
+      <span
+        class="text-xs font-semibold uppercase tracking-wide text-gold-dark"
+      >
+        Error 404
+      </span>
+      <p class="mt-3 font-display text-7xl font-semibold text-gold sm:text-8xl">
+        404
+      </p>
+
+      <div class="mt-4">
+        <Titulo as="h1" parte1="Página" parte2="no encontrada" />
+      </div>
+
+      <p class="mt-4 text-base leading-relaxed text-text-muted sm:text-lg">
+        Puede que el enlace esté roto o que la página se haya movido. Vuelve
+        al inicio o escríbenos y te ayudamos a encontrar tu momento sagrado.
+      </p>
+
+      <div
+        class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
+      >
+        <a
+          href="/"
+          class="inline-flex items-center gap-2 rounded-lg bg-gold px-8 py-3 text-sm font-semibold tracking-wide text-surface transition-colors hover:bg-gold-dark sm:text-base"
+        >
+          Volver al inicio
+        </a>
+        <a
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-lg border border-gold/40 px-8 py-3 text-sm font-semibold tracking-wide text-primary transition-colors hover:border-gold hover:bg-gold hover:text-surface sm:text-base"
+        >
+          Escríbenos por WhatsApp
+        </a>
+      </div>
+
+      <ul
+        class="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 border-t border-background-alt pt-8 text-sm"
+      >
+        {
+          enlaces.map((enlace) => (
+            <li>
+              <a
+                href={enlace.href}
+                class="text-text-muted transition-colors hover:text-gold-dark"
+              >
+                {enlace.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

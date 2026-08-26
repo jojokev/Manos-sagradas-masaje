@@ -1,11 +1,7 @@
 ---
+import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
-import piedrasCalientes from "../assets/images/manos sagradas masajes 03.webp";
-import descontracturante from "../assets/images/manos sagradas masajes 01.webp";
-import relajante from "../assets/images/manos sagradas masajes 02.webp";
-import terapeutico from "../assets/images/manos sagradas masajes 04.webp";
-import drenajeLinfatico from "../assets/images/manos sagradas masajes 05.webp";
-import prenatal from "../assets/images/manos sagradas masajes 06.webp";
+import Titulo from "./Titulo.astro";
 
 const whatsappNumber = "51907529233";
 
@@ -13,196 +9,195 @@ function whatsappHref(mensaje: string) {
   return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensaje)}`;
 }
 
-type Servicio = {
-  title: string;
-  duracion: string;
-  mensaje: string;
-  image?: typeof piedrasCalientes;
-  icon?: "leaf" | "droplet" | "footprint" | "blossom";
-};
-
-const servicios: Servicio[] = [
-  {
-    title: "Piedras calientes",
-    duracion: "60 min",
-    image: piedrasCalientes,
-    mensaje: "¡Hola! Me interesa el masaje con piedras calientes, ¿me cuentan más?",
-  },
-  {
-    title: "Descontracturante",
-    duracion: "45 min",
-    image: descontracturante,
-    mensaje: "¡Hola! Me interesa el masaje descontracturante, ¿me cuentan más?",
-  },
-  {
-    title: "Relajante",
-    duracion: "40 min",
-    image: relajante,
-    mensaje: "¡Hola! Me interesa el masaje relajante, ¿me cuentan más?",
-  },
-  {
-    title: "Terapéutico",
-    duracion: "60 min",
-    image: terapeutico,
-    icon: "leaf",
-    mensaje: "¡Hola! Me interesa el masaje terapéutico, ¿me cuentan más?",
-  },
-  {
-    title: "Drenaje linfático",
-    duracion: "45 min",
-    image: drenajeLinfatico,
-    icon: "droplet",
-    mensaje: "¡Hola! Me interesa el masaje de drenaje linfático, ¿me cuentan más?",
-  },
-  {
-    title: "Reflexología podal",
-    duracion: "30 min",
-    icon: "footprint",
-    mensaje: "¡Hola! Me interesa la reflexología podal, ¿me cuentan más?",
-  },
-  {
-    title: "Prenatal",
-    duracion: "40 min",
-    image: prenatal,
-    icon: "blossom",
-    mensaje: "¡Hola! Me interesa el masaje prenatal, ¿me cuentan más?",
-  },
+// Orden fijo de la sección "Elige tu momento sagrado", igual al que ya usa la página de cada servicio.
+const ordenServicios = [
+  "relajante",
+  "descontracturante",
+  "terapeutico",
+  "drenaje-linfatico",
+  "reflexologia-podal",
+  "piedras-calientes",
+  "prenatal",
 ];
+
+const todosLosServicios = await getCollection("servicios");
+const serviciosOrdenados = ordenServicios
+  .map((slug) => todosLosServicios.find((entry) => entry.id === slug))
+  .filter((entry): entry is (typeof todosLosServicios)[number] =>
+    Boolean(entry),
+  );
+
+// Máximo 9 tarjetas en total; se reserva un puesto para la tarjeta "¿Buscas algo más?".
+const servicios = serviciosOrdenados.slice(0, 8);
 ---
 
-<section id="servicios" class="bg-background py-20 sm:py-28">
+<section id="servicios" class="bg-background py-12 sm:py-16">
   <div class="mx-auto max-w-7xl px-6 lg:px-10">
-    <div class="flex flex-wrap items-end justify-between gap-6">
-      <div class="max-w-2xl">
-        <h2 class="font-display text-3xl font-semibold text-text sm:text-4xl">
-          Nuestras terapias
-        </h2>
-        <p class="mt-4 text-base text-text-muted sm:text-lg">
-          Cada sesión se adapta a ti. Elige la terapia que tu cuerpo necesita
-          hoy, o escríbenos y te ayudamos a encontrarla.
-        </p>
+    <div class="mx-auto max-w-2xl text-center">
+      <span
+        class="text-xs font-semibold uppercase tracking-wide text-gold"
+        data-reveal="fade-up"
+      >
+        Elige tu momento sagrado
+      </span>
+      <div class="mt-2" data-reveal="fade-up" style="--reveal-delay: 100ms">
+        <Titulo parte1="Nuestras" parte2="terapias" />
       </div>
-
-      <div class="hidden shrink-0 gap-3 sm:flex">
-        <button
-          type="button"
-          class="servicios-prev flex h-11 w-11 items-center justify-center rounded-lg border border-gold/40 text-primary transition-colors hover:border-gold hover:bg-gold hover:text-surface"
-          aria-label="Terapia anterior"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-            <path d="M15 6l-6 6 6 6" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          class="servicios-next flex h-11 w-11 items-center justify-center rounded-lg border border-gold/40 text-primary transition-colors hover:border-gold hover:bg-gold hover:text-surface"
-          aria-label="Siguiente terapia"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
-            <path d="M9 6l6 6-6 6" />
-          </svg>
-        </button>
-      </div>
+      <p
+        class="mt-4 text-base text-text-muted sm:text-lg"
+        data-reveal="fade-up"
+        style="--reveal-delay: 200ms"
+      >
+        Cada sesión se adapta a ti. Elige la terapia que tu cuerpo necesita hoy,
+        o escríbenos y te ayudamos a encontrarla.
+      </p>
+      <p
+        class="mt-4 font-display text-base italic text-primary-light"
+        data-reveal="fade-up"
+        style="--reveal-delay: 300ms"
+      >
+        Porque cuando cuidas de ti, todo fluye mejor.
+      </p>
     </div>
 
     <div class="servicios-swiper swiper mt-12">
       <div class="swiper-wrapper">
         {
-          servicios.map((servicio) => (
-            <div
-              tabindex="0"
-              class="swiper-slide stall group relative overflow-hidden rounded-lg bg-primary-dark shadow-lg outline-none transition-[transform,opacity] duration-300 focus-visible:ring-2 focus-visible:ring-gold"
-            >
-              <span class="absolute right-4 top-4 z-10 inline-flex items-center gap-1 rounded-lg border border-gold/50 bg-primary-dark px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-gold-light">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" />
-                  <path d="M12 7v5l3 3" />
-                </svg>
-                {servicio.duracion}
-              </span>
-              {servicio.image ? (
-                <>
-                  <Image
-                    src={servicio.image}
-                    alt={`Terapia de ${servicio.title.toLowerCase()} en Manos Sagradas Masajes`}
-                    class="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    widths={[400, 640, 800]}
-                    sizes="20rem"
-                  />
-                  <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/30 to-transparent" />
-                </>
-              ) : (
-                <div class="stall-texture aspect-[4/5] w-full bg-primary">
-                  <div class="flex h-full w-full items-start justify-center pt-10">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" class="h-12 w-12 text-gold-light/70" aria-hidden="true">
-                      {servicio.icon === "leaf" && (
-                        <>
-                          <path d="M6 20c-2-6 0-12 6-14 4 6 4 12 0 14a6 6 0 0 1-6 0Z" />
-                          <path d="M12 6c-1 4-1 8 0 14" />
-                        </>
-                      )}
-                      {servicio.icon === "droplet" && (
-                        <path d="M12 3c3 4 6 8 6 11a6 6 0 1 1-12 0c0-3 3-7 6-11Z" />
-                      )}
-                      {servicio.icon === "footprint" && (
-                        <>
-                          <ellipse cx="12" cy="14.5" rx="4.2" ry="6" />
-                          <circle cx="8.6" cy="6.2" r="1" />
-                          <circle cx="10.8" cy="4.4" r="1" />
-                          <circle cx="13.2" cy="4.1" r="1" />
-                          <circle cx="15.2" cy="5.2" r="1" />
-                        </>
-                      )}
-                      {servicio.icon === "blossom" && (
-                        <>
-                          <circle cx="12" cy="12" r="1.8" />
-                          <path d="M12 3.5c1.6 2.2 1.6 4.5 0 6.5-1.6-2-1.6-4.3 0-6.5Z" />
-                          <path d="M12 20.5c1.6-2.2 1.6-4.5 0-6.5-1.6 2-1.6 4.3 0 6.5Z" />
-                          <path d="M3.5 12c2.2-1.6 4.5-1.6 6.5 0-2 1.6-4.3 1.6-6.5 0Z" />
-                          <path d="M20.5 12c-2.2-1.6-4.5-1.6-6.5 0 2 1.6 4.3 1.6 6.5 0Z" />
-                        </>
-                      )}
-                    </svg>
-                  </div>
-                </div>
-              )}
-              <div class="absolute inset-x-0 bottom-0 p-6">
-                <h3 class="font-display text-xl text-surface">{servicio.title}</h3>
+          servicios.map((servicio, index) => {
+            const categoria = servicio.data.categorias[0];
+            return (
+              <div
+                class="swiper-slide h-auto"
+                data-reveal="fade-up"
+                style={`--reveal-delay: ${Math.min(index * 90, 450)}ms`}
+              >
                 <a
-                  href={whatsappHref(servicio.mensaje)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="mt-3 inline-block text-xs font-semibold uppercase tracking-wide text-gold-light transition-colors hover:text-gold"
+                  href={`/servicios/${servicio.id}`}
+                  class="group flex h-full flex-col overflow-hidden rounded-lg bg-surface shadow-lg outline-none transition-shadow duration-300 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-gold"
                 >
-                  Ver masaje →
+                  <div class="relative">
+                    <div class="overflow-hidden rounded-t-lg">
+                      <Image
+                        src={servicio.data.imagenDestacada}
+                        alt={`Terapia de ${servicio.data.titulo.toLowerCase()} en Manos Sagradas Masajes`}
+                        class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        widths={[320, 480, 640]}
+                        sizes="(min-width: 1024px) 22rem, 20rem"
+                      />
+                    </div>
+                    {categoria && (
+                      <span class="absolute -bottom-4 left-6 inline-flex items-center rounded-lg bg-gold px-4 py-2 text-xs font-semibold uppercase tracking-wide text-surface shadow-md">
+                        {categoria}
+                      </span>
+                    )}
+                    <span
+                      class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-surface/90 text-primary shadow-md backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:bg-gold group-hover:text-surface"
+                      aria-hidden="true"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="h-4 w-4"
+                        aria-hidden="true"
+                      >
+                        <path d="M7 17 17 7" />
+                        <path d="M8 7h9v9" />
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="flex flex-1 flex-col px-6 pb-6 pt-9">
+                    <h3 class="font-display text-xl font-semibold text-text">
+                      {servicio.data.titulo}
+                    </h3>
+                    <p class="mt-2 text-sm leading-relaxed text-text-muted">
+                      {servicio.data.descripcionCorta}
+                    </p>
+                  </div>
                 </a>
               </div>
-            </div>
-          ))
+            );
+          })
         }
 
-        <a
-          href={whatsappHref("¡Hola! Busco un masaje y quisiera saber qué me recomiendan.")}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="swiper-slide stall stall-cta flex aspect-[4/5] flex-col justify-center rounded-lg border border-gold/40 bg-primary p-8 text-center shadow-lg transition-[transform,opacity] duration-300 hover:-translate-y-1"
+        <div
+          class="swiper-slide h-auto"
+          data-reveal="fade-up"
+          style={`--reveal-delay: ${Math.min(servicios.length * 90, 450)}ms`}
         >
-          <p class="font-display text-xl text-surface">¿Buscas algo más?</p>
-          <p class="mt-2 text-sm text-background-alt">
-            Escríbenos y te ayudamos a encontrar la terapia ideal para ti.
-          </p>
-          <span class="mt-4 text-xs font-semibold uppercase tracking-wide text-gold-light">
-            Escribir por WhatsApp →
-          </span>
-        </a>
+          <a
+            href={whatsappHref(
+              "¡Hola! Busco un masaje y quisiera saber qué me recomiendan.",
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="stall-cta flex h-full flex-col justify-center rounded-lg border border-gold/40 bg-primary p-8 text-center shadow-lg transition-transform duration-300 hover:-translate-y-1"
+          >
+            <p class="font-display text-xl text-surface">¿Buscas algo más?</p>
+            <p class="mt-2 text-sm text-background-alt">
+              Escríbenos y te ayudamos a encontrar la terapia ideal para ti.
+            </p>
+            <span
+              class="mt-4 text-xs font-semibold uppercase tracking-wide text-gold-light"
+            >
+              Escribir por WhatsApp →
+            </span>
+          </a>
+        </div>
       </div>
+    </div>
+
+    <div
+      class="servicios-pagination mt-8 flex items-center justify-center gap-2 lg:hidden"
+    >
+    </div>
+
+    <div class="servicios-nav mt-6 flex justify-center gap-3 lg:hidden">
+      <button
+        type="button"
+        class="servicios-prev flex h-11 w-11 items-center justify-center rounded-lg border border-gold/40 text-primary transition-colors hover:border-gold hover:bg-gold hover:text-surface"
+        aria-label="Terapia anterior"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-5 w-5"
+          aria-hidden="true"
+        >
+          <path d="M15 6l-6 6 6 6"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="servicios-next flex h-11 w-11 items-center justify-center rounded-lg border border-gold/40 text-primary transition-colors hover:border-gold hover:bg-gold hover:text-surface"
+        aria-label="Siguiente terapia"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-5 w-5"
+          aria-hidden="true"
+        >
+          <path d="M9 6l6 6-6 6"></path>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
 
 <style>
-  .stall-cta,
-  .stall-texture {
+  .stall-cta {
     background-image: repeating-linear-gradient(
       135deg,
       var(--color-gold-dark) 0,
@@ -219,30 +214,73 @@ const servicios: Servicio[] = [
     opacity: 0.3;
     pointer-events: none;
   }
+
+  /* Desde lg ya no es un slide: la pista se convierte en una grilla de 3 columnas (máx. 9 tarjetas). */
+  @media (min-width: 1024px) {
+    .servicios-swiper :global(.swiper-wrapper) {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      transform: none !important;
+    }
+    .servicios-swiper :global(.swiper-slide) {
+      width: auto !important;
+    }
+  }
+
+  .servicios-pagination :global(.swiper-pagination-bullet) {
+    background-color: var(--color-primary-light);
+    opacity: 0.4;
+  }
+  .servicios-pagination :global(.swiper-pagination-bullet-active) {
+    background-color: var(--color-gold);
+    opacity: 1;
+  }
 </style>
 
 <script>
   import Swiper from "swiper";
-  import { Navigation } from "swiper/modules";
+  import { Navigation, Pagination } from "swiper/modules";
   import "swiper/css";
+  import "swiper/css/pagination";
 
-  const el = document.querySelector<HTMLElement>(".servicios-swiper");
-  if (el) {
-    new Swiper(el, {
-      modules: [Navigation],
-      slidesPerView: 1.15,
-      spaceBetween: 16,
-      watchOverflow: true,
-      breakpoints: {
-        640: { slidesPerView: 1.8, spaceBetween: 20 },
-        768: { slidesPerView: 2.3, spaceBetween: 24 },
-        1024: { slidesPerView: 2.8, spaceBetween: 24 },
-        1280: { slidesPerView: 3.5, spaceBetween: 24 },
-      },
-      navigation: {
-        nextEl: ".servicios-next",
-        prevEl: ".servicios-prev",
-      },
-    });
+  // Desde lg (1024px) la sección deja de ser un slide y pasa a grilla CSS,
+  // así que Swiper solo se activa por debajo de ese ancho.
+  const escritorio = window.matchMedia("(min-width: 1024px)");
+  let swiper: Swiper | undefined;
+
+  function actualizarSwiper() {
+    const el = document.querySelector<HTMLElement>(".servicios-swiper");
+    if (!el) return;
+
+    if (escritorio.matches) {
+      swiper?.destroy(true, true);
+      swiper = undefined;
+      return;
+    }
+
+    if (!swiper) {
+      swiper = new Swiper(el, {
+        modules: [Navigation, Pagination],
+        slidesPerView: 1.15,
+        spaceBetween: 16,
+        watchOverflow: true,
+        breakpoints: {
+          0: { slidesPerView: 1, spaceBetween: 20 },
+          768: { slidesPerView: 2.3, spaceBetween: 24 },
+        },
+        navigation: {
+          nextEl: ".servicios-next",
+          prevEl: ".servicios-prev",
+        },
+        pagination: {
+          el: ".servicios-pagination",
+          clickable: true,
+        },
+      });
+    }
   }
+
+  actualizarSwiper();
+  escritorio.addEventListener("change", actualizarSwiper);
 </script>

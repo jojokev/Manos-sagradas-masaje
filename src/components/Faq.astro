@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import Titulo from "./Titulo.astro";
 import ambiente from "../assets/images/manos sagradas masajes 06.webp";
 
 const preguntas = [
@@ -36,15 +37,18 @@ const preguntas = [
 ];
 ---
 
-<section id="preguntas-frecuentes" class="bg-background py-20 sm:py-28">
+<section id="preguntas-frecuentes" class="bg-background py-12 sm:py-16">
   <div class="mx-auto max-w-7xl px-6 lg:px-10">
-    <div class="max-w-2xl">
-      <p class="text-xs font-semibold uppercase tracking-wide text-gold-dark">
+    <div class="mx-auto max-w-2xl text-center">
+      <p
+        class="text-xs font-semibold uppercase tracking-wide text-gold-dark"
+        data-reveal="fade-up"
+      >
         Preguntas frecuentes
       </p>
-      <h2 class="mt-2 font-display text-3xl font-semibold text-text sm:text-4xl">
-        Resolvemos tus dudas
-      </h2>
+      <div class="mt-2" data-reveal="fade-up" style="--reveal-delay: 100ms">
+        <Titulo parte1="Resolvemos" parte2="tus dudas" />
+      </div>
     </div>
 
     <div class="mt-12 grid gap-12 lg:grid-cols-[3fr_2fr] lg:items-center lg:gap-16">
@@ -54,6 +58,8 @@ const preguntas = [
             <div
               class="faq-item overflow-hidden rounded-lg border border-l-4 border-background-alt border-l-transparent bg-surface transition-colors data-[open=true]:border-l-gold"
               data-open={index === 0 ? "true" : "false"}
+              data-reveal="fade-up"
+              style={`--reveal-delay: ${index * 90}ms`}
             >
               <button
                 type="button"
@@ -79,7 +85,10 @@ const preguntas = [
         }
       </div>
 
-      <div class="relative mx-auto w-full max-w-md lg:mx-0">
+      <div
+        class="relative mx-auto w-full max-w-md lg:mx-0"
+        data-reveal="fade-right"
+      >
         <div class="absolute -right-4 -top-4 h-full w-full rounded-lg bg-background-alt"></div>
         <Image
           src={ambiente}

@@ -1,39 +1,61 @@
 ---
 import { Image } from "astro:assets";
-import hotStones from "../assets/images/manos sagradas masajes 03.webp";
-import hotStones2 from "../assets/images/manos sagradas masajes 01.webp";
-import masaje04 from "../assets/images/manos sagradas masajes 04.webp";
-import masaje05 from "../assets/images/manos sagradas masajes 05.webp";
+import { getCollection } from "astro:content";
+import masaje02 from "../assets/images/masaje relajante 01.webp";
 import masaje06 from "../assets/images/manos sagradas masajes 06.webp";
+import masaje03 from "../assets/images/manos sagradas masajes 03.webp";
+import masaje05 from "../assets/images/masaje prenatal 01.webp";
 
-const slides = [hotStones, hotStones2, masaje04, masaje05, masaje06];
+// Imágenes elegidas al azar de src/assets/images como placeholder;
+// el dueño las reemplazará manualmente más adelante.
+const imagenesAleatorias = [masaje02, masaje06, masaje03, masaje05];
+const ordenSlides = [
+  "relajante",
+  "descontracturante",
+  "piedras-calientes",
+  "prenatal",
+];
 
-const whatsappNumber = "51907529233";
-const whatsappMessage = encodeURIComponent(
-  "¡Hola! Me gustaría reservar una cita para un masaje.",
-);
-const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+const todosLosServicios = await getCollection("servicios");
+const slides = ordenSlides.map((slug, i) => {
+  const servicio = todosLosServicios.find((entry) => entry.id === slug)!;
+  return {
+    image: imagenesAleatorias[i],
+    slug,
+    titulo: servicio.data.titulo,
+    tagline: servicio.data.tagline ?? servicio.data.titulo,
+    descripcionCorta: servicio.data.descripcionCorta,
+  };
+});
 ---
 
 <section
-  class="relative h-screen min-h-[600px] w-full overflow-hidden bg-primary-dark"
+  class="relative h-[calc(100svh-6.5rem)] min-h-[500px] w-full overflow-hidden bg-primary-dark lg:h-[calc(100svh-9rem)]"
 >
   <div
     class="hero-swiper swiper h-full w-full"
     data-slide-count={slides.length}
+    data-slides={JSON.stringify(
+      slides.map(({ titulo, tagline, descripcionCorta, slug }) => ({
+        titulo,
+        tagline,
+        descripcionCorta,
+        slug,
+      })),
+    )}
   >
     <div class="swiper-wrapper">
       {
-        slides.map((src) => (
+        slides.map((slide) => (
           <div class="swiper-slide relative">
             <Image
-              src={src}
-              alt="Terapia de masaje en Manos Sagradas Masajes"
+              src={slide.image}
+              alt={`Terapia de ${slide.titulo.toLowerCase()} en Manos Sagradas Masajes`}
               class="h-full w-full object-cover"
               widths={[640, 1024, 1600, 1920]}
               sizes="100vw"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/85 via-primary-dark/45 to-primary-dark/25" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/50 to-primary-dark/20" />
           </div>
         ))
       }
@@ -41,27 +63,88 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
     <div class="hero-swiper-pagination swiper-pagination z-20"></div>
   </div>
 
-  <div
-    class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-6 text-center"
-  >
-    <div class="max-w-2xl">
-      <h1
-        class="font-display text-4xl font-semibold leading-tight text-surface sm:text-5xl lg:text-6xl"
+  <div class="pointer-events-none absolute inset-0 z-10 flex items-center">
+    <div class="mx-auto w-full max-w-7xl px-6 lg:px-10">
+      <div id="hero-content" class="hero-content max-w-2xl text-left">
+        <p
+          id="hero-eyebrow"
+          class="inline-block rounded-lg bg-primary-dark/70 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gold-light backdrop-blur-sm"
+        >
+          {slides[0].titulo}
+        </p>
+        <p
+          id="hero-texto"
+          class="mt-3 font-display text-4xl font-semibold text-surface sm:text-5xl lg:text-6xl"
+        >
+          {slides[0].tagline}
+        </p>
+        <p
+          id="hero-descripcion"
+          class="mt-4 max-w-md text-base text-background-alt sm:text-lg"
+        >
+          {slides[0].descripcionCorta}
+        </p>
+        <a
+          id="hero-cta"
+          href={`/servicios/${slides[0].slug}`}
+          class="pointer-events-auto mt-8 inline-flex items-center gap-2 rounded-lg bg-gold px-8 py-3 text-sm font-semibold tracking-wide text-surface transition-colors hover:bg-gold-dark sm:text-base"
+        >
+          Conocer este masaje
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-4 w-4"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14M13 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-8 z-20 mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="hidden justify-end gap-3 sm:flex">
+      <button
+        type="button"
+        class="hero-prev flex h-11 w-11 items-center justify-center rounded-lg border border-surface/40 text-surface transition-colors hover:border-gold hover:bg-gold hover:text-surface"
+        aria-label="Slide anterior"
       >
-        El alivio que tu cuerpo estaba esperando
-      </h1>
-      <p class="mx-auto mt-5 max-w-xl text-base text-background-alt sm:text-lg">
-        Un espacio pensado para ti: detén el ruido, suelta el estrés y
-        regálate un momento de cuidado personal en Manos Sagradas Masajes.
-      </p>
-      <a
-        href={whatsappHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="pointer-events-auto mt-8 inline-block rounded-lg bg-gold px-8 py-3 text-sm font-semibold tracking-wide text-surface transition-colors hover:bg-gold-dark sm:text-base"
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-5 w-5"
+          aria-hidden="true"
+        >
+          <path d="M15 6l-6 6 6 6"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="hero-next flex h-11 w-11 items-center justify-center rounded-lg border border-surface/40 text-surface transition-colors hover:border-gold hover:bg-gold hover:text-surface"
+        aria-label="Siguiente slide"
       >
-        Reserva tu cita
-      </a>
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-5 w-5"
+          aria-hidden="true"
+        >
+          <path d="M9 6l6 6-6 6"></path>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
@@ -75,20 +158,60 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
     background-color: var(--color-gold);
     opacity: 1;
   }
+
+  /* Zoom + rotación muy suaves sobre la foto del slide activo */
+  .hero-swiper :global(.swiper-slide img) {
+    transform: scale(1) rotate(0deg);
+    transition: transform 6000ms ease-out;
+  }
+  .hero-swiper :global(.swiper-slide-active img) {
+    transform: scale(1.05) rotate(2deg);
+  }
+
+  @keyframes hero-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .hero-content {
+    animation: hero-fade-in 700ms ease-out both;
+  }
 </style>
 
 <script>
   import Swiper from "swiper";
-  import { Autoplay, EffectFade, Pagination } from "swiper/modules";
+  import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
   import "swiper/css";
   import "swiper/css/effect-fade";
   import "swiper/css/pagination";
 
+  type SlideData = {
+    titulo: string;
+    tagline: string;
+    descripcionCorta: string;
+    slug: string;
+  };
+
   const el = document.querySelector<HTMLElement>(".hero-swiper");
   if (el) {
     const slideCount = Number(el.dataset.slideCount ?? "1");
-    new Swiper(el, {
-      modules: [Autoplay, EffectFade, Pagination],
+    const datos = JSON.parse(el.dataset.slides ?? "[]") as SlideData[];
+
+    const contentEl = document.getElementById("hero-content");
+    const eyebrowEl = document.getElementById("hero-eyebrow");
+    const textoEl = document.getElementById("hero-texto");
+    const descripcionEl = document.getElementById("hero-descripcion");
+    const ctaEl = document.getElementById(
+      "hero-cta",
+    ) as HTMLAnchorElement | null;
+
+    const heroSwiper = new Swiper(el, {
+      modules: [Autoplay, EffectFade, Navigation, Pagination],
       effect: "fade",
       fadeEffect: { crossFade: true },
       speed: 1000,
@@ -96,6 +219,25 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
       autoplay:
         slideCount > 1 ? { delay: 4000, disableOnInteraction: false } : false,
       pagination: { el: ".hero-swiper-pagination", clickable: true },
+      navigation: {
+        nextEl: ".hero-next",
+        prevEl: ".hero-prev",
+      },
+    });
+
+    heroSwiper.on("slideChange", () => {
+      const slide = datos[heroSwiper.realIndex];
+      if (!slide) return;
+      if (eyebrowEl) eyebrowEl.textContent = slide.titulo;
+      if (textoEl) textoEl.textContent = slide.tagline;
+      if (descripcionEl) descripcionEl.textContent = slide.descripcionCorta;
+      if (ctaEl) ctaEl.href = `/servicios/${slide.slug}`;
+
+      if (contentEl) {
+        contentEl.classList.remove("hero-content");
+        void contentEl.offsetWidth; // fuerza reflow para reiniciar la animación
+        contentEl.classList.add("hero-content");
+      }
     });
   }
 </script>

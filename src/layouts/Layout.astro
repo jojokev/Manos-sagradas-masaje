@@ -1,5 +1,6 @@
 ---
 import "../global.css";
+import Header from "../components/Header.astro";
 
 interface Props {
   title?: string;
@@ -35,12 +36,13 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
   </head>
   <body class="bg-background font-sans text-text antialiased">
+    <Header />
     <slot />
   </body>
 </html>
@@ -50,6 +52,41 @@ const {
   body {
     margin: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
   }
 </style>
+
+<script>
+  // Revela elementos [data-reveal] cuando entran en viewport. Se llama de
+  // entrada (no hay <ClientRouter /> montado, así que "astro:page-load" no
+  // se dispara todavía) y también queda enganchado a ese evento por si en el
+  // futuro se activa el router de vistas.
+  function initScrollReveal() {
+    const elementos = document.querySelectorAll<HTMLElement>(
+      "[data-reveal]:not(.is-revealed)",
+    );
+    if (!elementos.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      elementos.forEach((el) => el.classList.add("is-revealed"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    elementos.forEach((el) => observer.observe(el));
+  }
+
+  initScrollReveal();
+  document.addEventListener("astro:page-load", initScrollReveal);
+</script>

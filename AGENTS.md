@@ -9,6 +9,20 @@
 - TikTok: https://www.tiktok.com/@manossagradasmasajes
 - Horario de atención: lunes a sábado, 9:00 a.m. – 6:00 p.m. Domingo cerrado.
 
+## Servicios
+
+Texto oficial "Elige tu momento sagrado", 7 terapias (contenido estructurado en `src/content/servicios/*.md`, esquema en `src/content.config.ts`; cada terapia tiene su página en `/servicios/[slug]`):
+
+1. **Relajante** — Tu pausa sagrada para resetear. Movimientos suaves que calman mente y cuerpo, liberan estrés y ansiedad, y ayudan a dormir mejor. Ideal para: desconectar del día a día.
+2. **Descontracturante** — Libera lo que cargas en la espalda. Presión profunda en cuello, hombros y espalda; suelta nudos y rigidez. Ideal para: trabajo de oficina y uso prolongado del celular.
+3. **Terapéutico** — Alivio con manos que sanan. Enfocado en dolores específicos (lumbar, cervical, piernas); recupera movilidad. Ideal para: molestias puntuales.
+4. **Drenaje linfático** — Desinflámate y reactívate. Toques suaves que activan el sistema linfático y la circulación; reduce líquidos y desinflama. Ideal para: piernas hinchadas y post-operatorios.
+5. **Reflexología podal** — Todo tu cuerpo empieza en tus pies. Estimula puntos de los pies conectados con todo el cuerpo; equilibra órganos y alivia el estrés desde la base. Ideal para: estar mucho tiempo de pie o buscar relajación profunda.
+6. **Piedras calientes** — El calor que derrite la tensión. Piedras volcánicas tibias + masaje; alivio profundo en contracturas fuertes. Ideal para: contracturas fuertes y una experiencia premium.
+7. **Prenatal** — Cuidarte a ti mientras cuidas a tu bebé. Técnicas seguras y cómodas para aliviar espalda, piernas y estrés del embarazo. Ideal para: embarazadas que necesitan un momento para sí mismas.
+
+Frase de cierre de marca: *"Porque cuando cuidas de ti, todo fluye mejor."*
+
 ## Idioma
 
 - El idioma del proyecto es español.

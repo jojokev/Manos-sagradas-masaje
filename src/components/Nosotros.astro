@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import Titulo from "./Titulo.astro";
 import local from "../assets/images/manos sagradas local 02.webp";
 import piedrasCalientes from "../assets/images/manos sagradas masajes 03.webp";
 import ambiente from "../assets/images/manos sagradas masajes 06.webp";
@@ -28,14 +29,14 @@ const credenciales = [
 
 <section
   id="nosotros"
-  class="bg-surface bg-repeat py-20 sm:py-28"
+  class="bg-surface bg-repeat py-12 sm:py-16"
   style={`background-image: url(${adventureBg.src})`}
 >
   <div
     class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-10"
   >
     <div class="mx-auto w-full max-w-md p-8 lg:mx-0 lg:p-10">
-      <div class="relative">
+      <div class="relative" data-reveal="fade-left">
         <div class="absolute -inset-3 rounded-lg border border-gold/40"></div>
         <Image
           src={local}
@@ -47,6 +48,8 @@ const credenciales = [
 
         <div
           class="absolute -bottom-8 -left-8 h-32 w-32 overflow-hidden rounded-full border-4 border-surface shadow-lg sm:-bottom-10 sm:-left-10 sm:h-40 sm:w-40"
+          data-reveal="zoom-in"
+          style="--reveal-delay: 250ms"
         >
           <Image
             src={piedrasCalientes}
@@ -58,6 +61,8 @@ const credenciales = [
         </div>
         <div
           class="absolute -top-8 -right-8 h-28 w-28 overflow-hidden rounded-full border-4 border-surface shadow-lg sm:-top-10 sm:-right-10 sm:h-36 sm:w-36"
+          data-reveal="zoom-in"
+          style="--reveal-delay: 400ms"
         >
           <Image
             src={ambiente}
@@ -71,10 +76,19 @@ const credenciales = [
     </div>
 
     <div class="max-w-xl">
-      <h2 class="font-display text-3xl font-semibold text-text sm:text-4xl">
-        Un espacio pensado para ti
-      </h2>
-      <p class="mt-5 text-base leading-relaxed text-text-muted sm:text-lg">
+      <div data-reveal="fade-up">
+        <Titulo
+          as="h1"
+          align="left"
+          parte1="Un espacio"
+          parte2="pensado para ti"
+        />
+      </div>
+      <p
+        class="mt-6 text-base leading-relaxed text-text-muted sm:text-lg"
+        data-reveal="fade-up"
+        style="--reveal-delay: 120ms"
+      >
         En Manos Sagradas creamos un lugar para detener el ruido, soltar el
         estrés y regalarte un momento de cuidado personal. Cada sesión es
         personalizada, en un ambiente tranquilo y cómodo, diseñado para tu
@@ -83,8 +97,12 @@ const credenciales = [
 
       <ul class="mt-8 space-y-6 border-t border-background-alt pt-8">
         {
-          credenciales.map((item) => (
-            <li class="flex gap-4 items-center">
+          credenciales.map((item, index) => (
+            <li
+              class="flex gap-4 items-center"
+              data-reveal="fade-up"
+              style={`--reveal-delay: ${240 + index * 120}ms`}
+            >
               <span class="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-gold" />
               <div>
                 <p class="font-display text-lg text-text">{item.label}</p>
@@ -100,6 +118,8 @@ const credenciales = [
         target="_blank"
         rel="noopener noreferrer"
         class="mt-8 inline-flex items-center gap-2 rounded-lg bg-gold px-8 py-3 text-sm font-semibold tracking-wide text-surface transition-colors hover:bg-gold-dark sm:text-base"
+        data-reveal="fade-up"
+        style="--reveal-delay: 620ms"
       >
         <svg
           viewBox="0 0 24 24"
