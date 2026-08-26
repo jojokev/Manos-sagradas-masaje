@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import logo from "../assets/icons/Logo_manos_sagradas.webp";
 import adventureBg from "../assets/background/adventure-bg.webp";
 
@@ -41,13 +42,21 @@ const paginasInformativas = [
   "Blog",
 ];
 
-const serviciosPopulares = [
-  "Piedras calientes",
-  "Descontracturante",
-  "Relajante",
-  "Terapéutico",
-  "Drenaje linfático",
+// Mismo orden que usan la sección "Nuestras terapias" y las páginas de detalle.
+const ordenServicios = [
+  "relajante",
+  "descontracturante",
+  "terapeutico",
+  "drenaje-linfatico",
+  "reflexologia-podal",
+  "piedras-calientes",
+  "prenatal",
 ];
+
+const todosLosServicios = await getCollection("servicios");
+const servicios = ordenServicios
+  .map((slug) => todosLosServicios.find((entry) => entry.id === slug))
+  .filter((entry): entry is (typeof todosLosServicios)[number] => Boolean(entry));
 
 const anioActual = new Date().getFullYear();
 ---
@@ -201,14 +210,14 @@ const anioActual = new Date().getFullYear();
 
       <div>
         <h3 class="text-xs font-semibold uppercase tracking-wide text-text">
-          Servicios populares
+          Servicios
         </h3>
         <ul class="mt-4 space-y-3 text-sm">
           {
-            serviciosPopulares.map((servicio) => (
+            servicios.map((servicio) => (
               <li>
                 <a
-                  href="#servicios"
+                  href={`/servicios/${servicio.id}`}
                   class="inline-flex items-center gap-2 text-text-muted transition-colors hover:text-gold-dark"
                 >
                   <svg
@@ -223,7 +232,7 @@ const anioActual = new Date().getFullYear();
                   >
                     <path d="M4 12l5 5L20 6" />
                   </svg>
-                  {servicio}
+                  {servicio.data.titulo}
                 </a>
               </li>
             ))
