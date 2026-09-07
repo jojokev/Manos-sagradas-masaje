@@ -11,7 +11,6 @@ imagenes:
   - "../../assets/images/Descontracturante/manossagradasmasajes-31.webp"
   - "../../assets/images/Descontracturante/manossagradasmasajes-32.webp"
   - "../../assets/images/Descontracturante/manossagradasmasajes-40.webp"
-  - "../../assets/images/Descontracturante/manossagradasmasajes-54.webp"
   - "../../assets/images/Descontracturante/manossagradasmasajes-55.webp"
   - "../../assets/images/Descontracturante/manossagradasmasajes-59.webp"
   - "../../assets/images/Descontracturante/manossagradasmasajes-60.webp"

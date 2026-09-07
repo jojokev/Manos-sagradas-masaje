@@ -6,7 +6,7 @@ categorias: ["Relajación", "Bienestar"]
 idealPara: "Desconectar del día a día"
 descripcionCorta: "Movimientos suaves que calman mente y cuerpo. Libera el estrés y la ansiedad, y te ayuda a dormir mejor."
 descripcionDetallada: ""
-imagenDestacada: "../../assets/images/Relajante/manossagradasmasajes-22.webp"
+imagenDestacada: "../../assets/images/Relajante/manossagradasmasajes-54.webp"
 imagenes:
   - "../../assets/images/Relajante/manossagradasmasajes-10.webp"
   - "../../assets/images/Relajante/manossagradasmasajes-20.webp"
