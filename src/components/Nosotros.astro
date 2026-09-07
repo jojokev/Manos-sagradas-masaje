@@ -1,9 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import Titulo from "./Titulo.astro";
-import local from "../assets/images/manos sagradas local 02.webp";
-import piedrasCalientes from "../assets/images/manos sagradas masajes 03.webp";
-import ambiente from "../assets/images/manos sagradas masajes 06.webp";
+import principal from "../assets/images/local/manossagradasmasajes-56.webp";
+import costadoInferior from "../assets/images/Drenaje-linfatico/manossagradasmasajes-01.webp";
+import costadoSuperior from "../assets/images/Prenatal/manossagradasmasajes-61.webp";
 import adventureBg from "../assets/background/adventure-bg.webp";
 
 const whatsappNumber = "51907529233";
@@ -35,13 +35,13 @@ const credenciales = [
   <div
     class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-10"
   >
-    <div class="mx-auto w-full max-w-md p-8 lg:mx-0 lg:p-10">
+    <div class="mx-auto w-full max-w-lg p-8 lg:mx-0 lg:p-10">
       <div class="relative" data-reveal="fade-left">
         <div class="absolute -inset-3 rounded-lg border border-gold/40"></div>
         <Image
-          src={local}
-          alt="Sala de masajes de Manos Sagradas Masajes en Cusco"
-          class="aspect-[4/5] w-full rounded-lg object-cover shadow-xl"
+          src={principal}
+          alt="Espacio de masajes de Manos Sagradas Masajes en Cusco"
+          class="aspect-[7/5] w-full rounded-lg object-cover shadow-xl"
           widths={[400, 640, 800]}
           sizes="(min-width: 1024px) 32rem, 90vw"
         />
@@ -52,8 +52,8 @@ const credenciales = [
           style="--reveal-delay: 250ms"
         >
           <Image
-            src={piedrasCalientes}
-            alt="Masaje con piedras calientes en Manos Sagradas Masajes"
+            src={costadoInferior}
+            alt="Sesión de masaje en Manos Sagradas Masajes"
             class="h-full w-full object-cover"
             widths={[200, 300]}
             sizes="10rem"
@@ -65,8 +65,8 @@ const credenciales = [
           style="--reveal-delay: 400ms"
         >
           <Image
-            src={ambiente}
-            alt="Ambiente cálido de Manos Sagradas Masajes"
+            src={costadoSuperior}
+            alt="Detalle de una terapia en Manos Sagradas Masajes"
             class="h-full w-full object-cover"
             widths={[200, 300]}
             sizes="9rem"

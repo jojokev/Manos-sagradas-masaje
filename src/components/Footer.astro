@@ -13,7 +13,9 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
 const whatsappFlotanteHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
   "¡Hola! Me gustaría recibir más información sobre los masajes que ofrecen.",
 )}`;
-const mapaHref = `https://www.google.com/maps?q=${encodeURIComponent(direccion)}&output=embed`;
+// Embed real de Google Maps del local (ficha "Manos Sagradas Masajes").
+const mapaEmbedSrc =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d280.111856786419!2d-71.98106646870113!3d-13.526211231976736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x916dd5224c1c81bb%3A0x2080356df5deecda!2sManos%20Sagradas%20Masajes!5e0!3m2!1ses!2spe!4v1788818497196!5m2!1ses!2spe";
 
 const socialLinks = [
   { name: "Facebook", href: "https://www.facebook.com/ManosSagradasMasajes/" },
@@ -34,12 +36,12 @@ const coloresRedes: Record<string, string> = {
   WhatsApp: "#25D366",
 };
 
-// Páginas propias pendientes de crear; por ahora no enlazan a ningún lado.
+// Enlaces a las secciones del home, mismos anclajes que usa el Header.
 const paginasInformativas = [
-  "Sobre nosotros",
-  "Servicios",
-  "Preguntas frecuentes",
-  "Blog",
+  { label: "Sobre nosotros", href: "/#nosotros" },
+  { label: "Servicios", href: "/#servicios" },
+  { label: "Galería", href: "/#galeria" },
+  { label: "Preguntas frecuentes", href: "/#preguntas-frecuentes" },
 ];
 
 // Mismo orden que usan la sección "Nuestras terapias" y las páginas de detalle.
@@ -92,11 +94,12 @@ const anioActual = new Date().getFullYear();
 
       <div class="overflow-hidden rounded-lg border border-gold/30 shadow-xl">
         <iframe
-          src={mapaHref}
+          src={mapaEmbedSrc}
           class="h-80 w-full grayscale-[15%] sm:h-96 lg:h-[20rem]"
           style="border:0;"
           loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"
           title="Ubicación de Manos Sagradas Masajes en Cusco"></iframe>
       </div>
     </div>
@@ -196,11 +199,11 @@ const anioActual = new Date().getFullYear();
             paginasInformativas.map((pagina) => (
               <li>
                 <a
-                  href="#"
+                  href={pagina.href}
                   class="inline-flex items-center gap-2 text-text-muted transition-colors hover:text-gold-dark"
                 >
                   <span aria-hidden="true">→</span>
-                  {pagina}
+                  {pagina.label}
                 </a>
               </li>
             ))

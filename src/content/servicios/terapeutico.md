@@ -6,10 +6,10 @@ categorias: ["Terapéutico", "Rehabilitación"]
 idealPara: "Molestias puntuales"
 descripcionCorta: "Enfocado en aliviar dolores específicos: lumbar, cervical, piernas. Recuperamos tu movilidad."
 descripcionDetallada: ""
-imagenDestacada: "../../assets/images/masaje terapeutico 01.webp"
+imagenDestacada: "../../assets/images/Terapeutico/manossagradasmasajes-53.webp"
 imagenes:
-  - "../../assets/images/masaje terapeutico 02.webp"
-  - "../../assets/images/masaje terapeutico 03.webp"
-  - "../../assets/images/masaje terapeutico 04.webp"
-  - "../../assets/images/masaje terapeutico 05.webp"
+  - "../../assets/images/Terapeutico/manossagradasmasajes-29.webp"
+  - "../../assets/images/Terapeutico/manossagradasmasajes-51.webp"
+  - "../../assets/images/Terapeutico/manossagradasmasajes-52.webp"
+  - "../../assets/images/Terapeutico/manossagradasmasajes-54.webp"
 ---

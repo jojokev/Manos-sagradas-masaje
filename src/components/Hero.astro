@@ -1,14 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import masaje02 from "../assets/images/masaje relajante 01.webp";
-import masaje06 from "../assets/images/manos sagradas masajes 06.webp";
-import masaje03 from "../assets/images/manos sagradas masajes 03.webp";
-import masaje05 from "../assets/images/masaje prenatal 01.webp";
 
-// Imágenes elegidas al azar de src/assets/images como placeholder;
-// el dueño las reemplazará manualmente más adelante.
-const imagenesAleatorias = [masaje02, masaje06, masaje03, masaje05];
+// Cada slide del hero usa la imagen destacada del servicio cuyo texto se muestra.
 const ordenSlides = [
   "relajante",
   "descontracturante",
@@ -17,10 +11,10 @@ const ordenSlides = [
 ];
 
 const todosLosServicios = await getCollection("servicios");
-const slides = ordenSlides.map((slug, i) => {
+const slides = ordenSlides.map((slug) => {
   const servicio = todosLosServicios.find((entry) => entry.id === slug)!;
   return {
-    image: imagenesAleatorias[i],
+    image: servicio.data.imagenDestacada,
     slug,
     titulo: servicio.data.titulo,
     tagline: servicio.data.tagline ?? servicio.data.titulo,

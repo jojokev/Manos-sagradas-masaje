@@ -1,30 +1,46 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import Titulo from "./Titulo.astro";
-import masaje01 from "../assets/images/manos sagradas masajes 01.webp";
-import masaje02 from "../assets/images/manos sagradas masajes 02.webp";
-import masaje03 from "../assets/images/manos sagradas masajes 03.webp";
-import masaje04 from "../assets/images/manos sagradas masajes 04.webp";
-import masaje05 from "../assets/images/manos sagradas masajes 05.webp";
-import masaje06 from "../assets/images/manos sagradas masajes 06.webp";
-import local01 from "../assets/images/manos sagradas local 01.webp";
-import local02 from "../assets/images/manos sagradas local 02.webp";
+import local56 from "../assets/images/local/manossagradasmasajes-56.webp";
+import local57 from "../assets/images/local/manossagradasmasajes-57.webp";
+import relajante20 from "../assets/images/Relajante/manossagradasmasajes-20.webp";
+import descontracturante59 from "../assets/images/Descontracturante/manossagradasmasajes-59.webp";
+
+// Mismo orden que "Nuestras terapias" y el footer.
+const ordenServicios = [
+  "relajante",
+  "descontracturante",
+  "terapeutico",
+  "drenaje-linfatico",
+  "reflexologia-podal",
+  "piedras-calientes",
+  "prenatal",
+];
+
+const todosLosServicios = await getCollection("servicios");
+const serviciosOrdenados = ordenServicios
+  .map((slug) => todosLosServicios.find((entry) => entry.id === slug))
+  .filter((entry): entry is (typeof todosLosServicios)[number] =>
+    Boolean(entry),
+  );
 
 // Siempre 11 fotos. La primera ocupa 2 columnas en todos los anchos (2/3/4 columnas
 // según el breakpoint) y las otras 10 son 1x1, así el total de celdas (2 + 10 = 12)
 // es múltiplo exacto de 2, 3 y 4 columnas: el grid siempre queda completo, sin huecos.
 const fotos = [
-  { title: "Descontracturante", image: masaje01, span: "col-span-2" },
-  { title: "Relajante", image: masaje02, span: "" },
-  { title: "Piedras calientes", image: masaje03, span: "" },
-  { title: "Terapéutico", image: masaje04, span: "" },
-  { title: "Drenaje linfático", image: masaje05, span: "" },
-  { title: "Prenatal", image: masaje06, span: "" },
-  { title: "Nuestro espacio", image: local01, span: "" },
-  { title: "Nuestro espacio", image: local02, span: "" },
-  { title: "Relajante", image: masaje02, span: "" },
-  { title: "Terapéutico", image: masaje04, span: "" },
-  { title: "Nuestro espacio", image: local02, span: "" },
+  // Imagen destacada de cada servicio, con el nombre del servicio como texto.
+  ...serviciosOrdenados.map((servicio, index) => ({
+    title: servicio.data.titulo,
+    image: servicio.data.imagenDestacada,
+    span: index === 0 ? "col-span-2" : "",
+  })),
+  // Fotos del espacio.
+  { title: "Manos Sagradas Masajes", image: local56, span: "" },
+  { title: "Manos Sagradas Masajes", image: local57, span: "" },
+  // Relleno para completar las 12 celdas del grid.
+  { title: "Relajante", image: relajante20, span: "" },
+  { title: "Descontracturante", image: descontracturante59, span: "" },
 ];
 ---
 
