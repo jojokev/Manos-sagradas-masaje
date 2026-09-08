@@ -9,6 +9,8 @@ const servicios = defineCollection({
       tagline: z.string().optional(),
       calificacion: z.number().min(0).max(5).default(5),
       precio: z.number().positive().optional(),
+      // Duración de la sesión (texto libre, p. ej. "30 min"). Aún sin decidir dónde se muestra.
+      duracion: z.string().default(""),
       categorias: z.array(z.string()).default([]),
       idealPara: z.string().optional(),
       descripcionCorta: z.string(),

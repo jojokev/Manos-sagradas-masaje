@@ -2,6 +2,8 @@
 titulo: "Piedras calientes"
 tagline: "El calor que derrite la tensión"
 calificacion: 5
+precio: 90
+duracion: "75 min"
 categorias: ["Premium", "Relajación profunda"]
 idealPara: "Contracturas fuertes y una experiencia premium"
 descripcionCorta: "Piedras volcánicas tibias combinadas con masaje. El calor penetra y suelta al instante la tensión muscular, con alivio profundo en contracturas fuertes."

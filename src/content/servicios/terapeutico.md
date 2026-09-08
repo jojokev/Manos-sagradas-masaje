@@ -2,6 +2,7 @@
 titulo: "Terapéutico"
 tagline: "Alivio con manos que sanan"
 calificacion: 5
+duracion: ""
 categorias: ["Terapéutico", "Rehabilitación"]
 idealPara: "Molestias puntuales"
 descripcionCorta: "Enfocado en aliviar dolores específicos: lumbar, cervical, piernas. Recuperamos tu movilidad."

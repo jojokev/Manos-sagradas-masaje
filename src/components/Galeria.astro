@@ -4,8 +4,6 @@ import { getCollection } from "astro:content";
 import Titulo from "./Titulo.astro";
 import local56 from "../assets/images/local/manossagradasmasajes-56.webp";
 import local57 from "../assets/images/local/manossagradasmasajes-57.webp";
-import relajante20 from "../assets/images/Relajante/manossagradasmasajes-20.webp";
-import descontracturante59 from "../assets/images/Descontracturante/manossagradasmasajes-59.webp";
 
 // Mismo orden que "Nuestras terapias" y el footer.
 const ordenServicios = [
@@ -14,8 +12,10 @@ const ordenServicios = [
   "terapeutico",
   "drenaje-linfatico",
   "reflexologia-podal",
+  "reflexologia-mas-masaje-piernas",
   "piedras-calientes",
   "prenatal",
+  "alineacion-de-chacras",
 ];
 
 const todosLosServicios = await getCollection("servicios");
@@ -38,9 +38,6 @@ const fotos = [
   // Fotos del espacio.
   { title: "Manos Sagradas Masajes", image: local56, span: "" },
   { title: "Manos Sagradas Masajes", image: local57, span: "" },
-  // Relleno para completar las 12 celdas del grid.
-  { title: "Relajante", image: relajante20, span: "" },
-  { title: "Descontracturante", image: descontracturante59, span: "" },
 ];
 ---
 
