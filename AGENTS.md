@@ -2,8 +2,8 @@
 
 - El proyecto es una página web para el negocio de masajes "Manos Sagradas Masajes".
 - El proyecto usa Sass (ya instalado) y Swiper.
-- Dirección: Plazoleta Belén N.º 1082-A, Tercer piso, Of. 301, Cusco, Peru, 08001.
-- Teléfono y WhatsApp: +51 907 529 233.
+- Dirección: Centro Comercial Ima Sumaq 265, primer nivel, oficina 116, Cusco, Perú.
+- Teléfono y WhatsApp: +51 908 340 505.
 - Página de Facebook: https://www.facebook.com/ManosSagradasMasajes/
 - Instagram: https://www.instagram.com/manossagradasmasajes/
 - TikTok: https://www.tiktok.com/@manossagradasmasajes
